@@ -4,6 +4,7 @@ import services.Validator;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +21,8 @@ import model.Product;
 				@WebInitParam(name = "product_quantity", value = ""),
 				@WebInitParam(name = "product_quantity_min", value = ""),
 				@WebInitParam(name = "product_location", value = ""),
-				@WebInitParam(name = "product_price", value = "")
+				@WebInitParam(name = "product_price", value = ""),
+				@WebInitParam(name = "error", value = "")
 		})
 
 
@@ -48,35 +50,35 @@ public class ProductServlet extends HttpServlet  {
 	        	Product product = new Product(productName, productDescription, productLocation, 
 	        			Integer.valueOf(productQuantityMin).intValue(), Integer.valueOf(productQuantity).intValue(),
 	        			productSpupplier, Float.valueOf(productPrice).floatValue());
-	            out.println("<html>");
-	            out.println("<head>");
-	            out.println("<title>Cadastro de Produto</title>");
-	            out.println("</head>");
-	            out.println("<body>");
-	            out.println(product.getName()+"<br>");
-	            out.println(product.getDescription()+"<br>");
-	            out.println(product.getSupplier()+"<br>");
-	            out.println(product.getQuantity()+"<br>");
-	            out.println(product.getQuantityMin()+"<br>");
-	            out.println(product.getLocation()+"<br>");
-	            out.println(product.getPrice()+"<br>");
-	            out.println("</body>");
-	            out.println("</html>");
+	        	request.setAttribute("product_name", productName);
+	        	request.setAttribute("product_description", productDescription);
+	        	request.setAttribute("product_supplier", productSpupplier);
+	        	request.setAttribute("product_quantity", productQuantity);
+	        	request.setAttribute("product_quantity_min", productQuantityMin);
+	        	request.setAttribute("product_location", productLocation);
+	        	request.setAttribute("product_price", productPrice);
+	        	RequestDispatcher rd = 
+		        request.getRequestDispatcher("/ProductDescription.jsp");
+	        	rd.forward(request,response);
 	        }
 	        else{
-	            out.println("<html>");
-	            out.println("<head>");
-	            out.println("<title>Cadastro de Produto</title>");
-	            out.println("</head>");
-	            out.println("<body>");
-	            out.println("ERRO: <br>"+ resultValidation);
-	            out.println("</body>");
-	            out.println("</html>");
-	            return ;
+	        	request.setAttribute("error", resultValidation);
+	        	request.setAttribute("product_name", productName);
+	        	request.setAttribute("product_description", productDescription);
+	        	request.setAttribute("product_supplier", productSpupplier);
+	        	request.setAttribute("product_quantity", productQuantity);
+	        	request.setAttribute("product_quantity_min", productQuantityMin);
+	        	request.setAttribute("product_location", productLocation);
+	        	request.setAttribute("product_price", productPrice);
+	        	RequestDispatcher rd = 
+		        request.getRequestDispatcher("/ProductRegister.jsp");
+	        	rd.forward(request,response);
 	        }
         }
         else{
-        	out.println("formulario");
+        	RequestDispatcher rd = 
+	        request.getRequestDispatcher("/ProductRegister.jsp");
+        	rd.forward(request,response);
         }
 
     }
