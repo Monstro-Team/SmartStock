@@ -54,7 +54,7 @@ public class Validator {
 			result.append("<br>Digite a localização corretamente.");
 		}
 		if(!validateStringEmpty(supplier)){
-			result.append("<br>Digite a localização corretamente.");
+			result.append("<br>Digite o fornecedor corretamente.");
 		}
 		if(!validateIsNumberIntegerPositiveNotNull(quantity)){
 			result.append("<br>A quantidade tem que ser um número e maior que zero.");
