@@ -3,6 +3,7 @@ package controller;
 import services.Validator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ProductDAO;
 import model.Product;
 @WebServlet( urlPatterns = {"/ProductServlet"},
 		initParams = {
@@ -50,6 +52,15 @@ public class ProductServlet extends HttpServlet  {
 	        	Product product = new Product(productName, productDescription, productLocation, 
 	        			Integer.valueOf(productQuantityMin).intValue(), Integer.valueOf(productQuantity).intValue(),
 	        			productSpupplier, Float.valueOf(productPrice).floatValue());
+	        	
+	        	ProductDAO productDAO = new ProductDAO();
+	        	try {
+					productDAO.includeProduct(product);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println("Entrouu no catch "+e);
+				}
+	        	
 	        	request.setAttribute("product_name", productName);
 	        	request.setAttribute("product_description", productDescription);
 	        	request.setAttribute("product_supplier", productSpupplier);
