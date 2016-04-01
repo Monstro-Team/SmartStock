@@ -8,16 +8,16 @@ public class FactoryConnection {
 	
 	static String statusConnection = "";
 	
-	private final String local = "jdbc:mysql://localhost/smart_stock";
+	private final String local = "jdbc:mysql://localhost/SmartStock";
 	private final String user = "root";
-	private final String password = "";
+	private final String password = "Mudar123";
 	
 	private static FactoryConnection instance;
 
 	private FactoryConnection() {
 		
 	}
-		
+			
 	public static FactoryConnection getInstance() {
 		if ( instance == null ) {
 			instance = new FactoryConnection();

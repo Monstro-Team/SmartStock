@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,16 +34,19 @@ public class LoginServlet extends HttpServlet {
 		
 		log.log(Level.FINE, "Username = ", username);
 		
-		User user = UserDAO.getUser(username);
+		User user = null;
+		
+		try {
+			user = UserDAO.getUser(username, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		if ( user != null ){
 			
-			log.log(Level.FINE, "Username not null");
-			
 			response.sendRedirect("index.html");
 		}else{
-			
-			log.log(Level.FINE, "Username null");
+			response.sendRedirect("error.jsp");
 		}
 		
 	}
