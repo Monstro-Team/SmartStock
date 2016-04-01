@@ -2,14 +2,21 @@
 	<head>
 		<title>Cadastro De Produtos</title>
 		<link rel="stylesheet" href="/SmartStock/css/bootstrap.min.css">
+		<script src="/SmartStock/js/jquery-2.2.2.min.js"></script>
 		<script>
-		function disableError() {
-			if("${error}".length == 0)
-				document.getElementById("errorInfo").style.visibility = "hidden";
+			function disableError() {
+				if("${error}".length == 0)
+					document.getElementById("errorInfo").style.visibility = "hidden";
 			}
 		</script>
+		<script> 
+		    $(function(){
+		      $("#includedContent").load("http://localhost:8080/SmartStock/menu.html"); 
+		    });
+	    </script> 
 	</head>
 	<body onload="disableError()">
+		<div id="includedContent"></div>
 		<div class="container">
 			<div class="col-lg-6">
 				<form action="/SmartStock/ProductServlet" method="post">
