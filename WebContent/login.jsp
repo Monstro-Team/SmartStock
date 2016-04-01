@@ -4,15 +4,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Entrar</title>
+<link rel="stylesheet" href="/SmartStock/css/bootstrap.min.css">
+<script src="/SmartStock/js/jquery-2.2.2.min.js"></script>
+<script src="/SmartStock/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("#includedContent").load("http://localhost:8080/SmartStock/menu_login.html");
+});
+</script>
+<title>Login</title>
 </head>
-<body>
-
-<form action="/SmartStock/LoginServlet" method="POST">
-	<input type="text" name="username" placeholder="Nome de usuario ..."><br>
-	<input type="password" name="password" placeholder="Senha ..."><br>
-	<input type="submit" name="submit" value="Entrar"><br>
-</form>
-
-</body>
+	<body>
+	<div id="includedContent"></div>
+		<div class="container">
+			<div class="col-lg-6">
+			 <fieldset>
+				<legend>Login</legend>
+					<div class="form-group">
+						<form action="/SmartStock/LoginServlet" method="POST">
+							<br>
+							Nome de Usuário:
+							<input class="form-control" type="text" name="username"><br>
+							Senha:
+							<input class="form-control" type="password" name="password"><br>
+							<input class="btn btn-success" type="submit" name="submit" value="Entrar"><br>
+						</form>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</body>
 </html>
