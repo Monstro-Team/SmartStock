@@ -51,8 +51,6 @@ public class UserDAO {
 			throw new RuntimeException(e);
 		}
 		
-		System.out.println("Quant: "+userList.size());
-		
 		return userList;
 	}
 	
