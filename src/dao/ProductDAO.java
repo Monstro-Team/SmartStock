@@ -2,7 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.Product;
 
@@ -10,7 +12,7 @@ public class ProductDAO {
 	/*Script for create table:
 	 * CREATE TABLE product(product_name VARCHAR(50) NOT NULL, product_description VARCHAR(200), product_price FLOAT(3), product_supplier VARCHAR(50), product_location VARCHAR(50), product_quantity_min INTEGER, product_quantity INTEGER );
 	 */
-	final String NAME_TABLE = "product";
+	final String TABLE_NAME = "product";
 	final String COLUMN_NAME = "product_name";
 	final String COLUMN_DESCRIPTION = "product_description";
 	final String COLUMN_PRICE = "product_price";
@@ -19,10 +21,16 @@ public class ProductDAO {
 	final String COLUMN_QUANTITY_MIN = "product_quantity_min";
 	final String COLUMN_QUANTITY = "product_quantity";
 	
+	private Connection connection;
+	
+	public ProductDAO() throws SQLException {
+		this.connection = FactoryConnection.getInstance().getConnection();
+	}
+	
 	public void includeProduct(Product product) throws SQLException{
 		
 		String query =  "INSERT INTO "
-				+ NAME_TABLE + " ( " + COLUMN_NAME+", " + COLUMN_DESCRIPTION+", " + COLUMN_PRICE
+				+ TABLE_NAME + " ( " + COLUMN_NAME+", " + COLUMN_DESCRIPTION+", " + COLUMN_PRICE
 				+ ", " + COLUMN_SUPPLIER + ", " + COLUMN_LOCATION + ", " + COLUMN_QUANTITY + ", "
 				+ COLUMN_QUANTITY_MIN + ") VALUES ( " + "\"" + product.getName() + "\", \"" 
 				+ product.getDescription() + "\", \"" + product.getPrice() + "\", \"" 
@@ -37,6 +45,32 @@ public class ProductDAO {
 		}
 		
 	}
+
+	public ArrayList<Product> getAllProducts() throws SQLException {
+		ArrayList<Product> products = new ArrayList<Product>();
+		Product product = new Product();
+		String query = "SELECT * FROM " + TABLE_NAME + ";";
+		PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+		ResultSet result = preparedStatement.executeQuery();
+		
+		while(result.next()) {			
+			product.setName(result.getString(COLUMN_NAME));
+			product.setDescription(result.getString(COLUMN_DESCRIPTION));
+			product.setLocation(result.getString(COLUMN_LOCATION));
+			product.setQuantityMin(result.getInt(COLUMN_QUANTITY_MIN));
+			product.setQuantity(result.getInt(COLUMN_QUANTITY));
+			product.setSupplier(result.getString(COLUMN_SUPPLIER));
+			product.setPrice(result.getFloat(COLUMN_PRICE));
+			
+			products.add(product);
+		}
+		
+		preparedStatement.close();
+		result.close();
+		
+		return products;
+	}
+
 	private void updateQuery( String query ) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement( query );

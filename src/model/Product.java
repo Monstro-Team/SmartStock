@@ -9,6 +9,10 @@ public class Product {
 	private String supplier;
 	private float price;
 	
+	public Product() {
+		
+	}
+	
 	public Product(String name, String description, String location, int quantityMin, int quantity, String supplier, float price) {
 		super();
 		this.name = name;
