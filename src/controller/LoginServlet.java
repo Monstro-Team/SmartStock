@@ -3,7 +3,9 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,10 +15,12 @@ import java.util.logging.*;
 import dao.UserDAO;
 import model.User;
 
-/**
- * Servlet implementation class LoginServlet
- */
-@WebServlet("/LoginServlet")
+@WebServlet( urlPatterns = {"/LoginServlet"},
+initParams = {
+		@WebInitParam(name = "error", value = ""),
+		@WebInitParam(name = "username", value = "")
+})	
+		
 public class LoginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -32,8 +36,6 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		log.log(Level.FINE, "Username = ", username);
-		
 		User user = null;
 		
 		try {
@@ -43,12 +45,12 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		if ( user != null ){
-			
 			response.sendRedirect("index.html");
 		}else{
-			response.sendRedirect("error.jsp");
+			request.setAttribute("error", "Login inválido: Usuário e/ou senha incorreta.");
+			request.setAttribute("username", username);
+			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+			rd.forward(request,response);
 		}
-		
 	}
-
 }
