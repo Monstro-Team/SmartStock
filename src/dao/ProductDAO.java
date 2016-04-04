@@ -49,24 +49,14 @@ public class ProductDAO {
 	}
 	
 	public Product getProduct(int productId) throws SQLException {
-		String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + productId + ";";
-		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement preparedStatement = connection.prepareStatement(query);
-		ResultSet rs = preparedStatement.executeQuery();
-
-		System.out.println(query);
+		ArrayList<Product> products = getAllProducts();
 		
-		Product product = new Product();
-		product.setId(rs.getInt(0));
-		product.setName(rs.getString(1));
-		product.setDescription(rs.getString(2));
-		product.setLocation(rs.getString(3));
-		product.setQuantityMin(rs.getInt(4));
-		product.setQuantity(rs.getInt(5));
-		product.setSupplier(rs.getString(6));
-		product.setPrice(rs.getFloat(7));
+		for(Product product: products){
+			if(product.getId() == productId)
+				return product;
+		}
 		
-		return product;
+		return null;
 	}
 
 	public ArrayList<Product> getAllProducts() throws SQLException {

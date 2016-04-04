@@ -20,6 +20,8 @@
 				<form action="/SmartStock/ProductRegisterServlet" method="post">
 					    <div class="form-group">
 							<div class="alert alert-dismissible alert-danger" id="errorInfo">
+								<br>
+								<br>
 							  <strong>Ocorreu um erro!</strong> <a href="#" class="alert-link"></a>${error}
 							</div>
 							Nome do produto:
