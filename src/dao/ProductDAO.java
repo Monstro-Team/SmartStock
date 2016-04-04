@@ -78,6 +78,10 @@ public class ProductDAO {
 			
 			products.add(product);
 		}
+		for(int i =0; i< products.size(); i++){
+			System.out.println(products.get(i).getName());
+			
+		}
 		
 		preparedStatement.close();
 		result.close();

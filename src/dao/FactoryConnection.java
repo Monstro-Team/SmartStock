@@ -8,7 +8,7 @@ public class FactoryConnection {
 	
 	static String statusConnection = "";
 	
-	private final String local = "jdbc:mysql://localhost/SmartStock";
+	private final String local = "jdbc:mysql://localhost/smart_stock";
 	private final String user = "root";
 <<<<<<< HEAD
 	private final String password = "12345";

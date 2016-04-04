@@ -45,11 +45,11 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		if ( user != null ){
-			response.sendRedirect("index.html");
+			response.sendRedirect("/SmartStock/index2.html");
 		}else{
 			request.setAttribute("error", "Login inválido: Usuário e/ou senha incorreta.");
 			request.setAttribute("username", username);
-			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 			rd.forward(request,response);
 		}
 	}
