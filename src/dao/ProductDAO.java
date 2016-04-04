@@ -61,12 +61,13 @@ public class ProductDAO {
 
 	public ArrayList<Product> getAllProducts() throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
-		Product product = new Product();
+		
 		String query = "SELECT * FROM " + TABLE_NAME + ";";
 		PreparedStatement preparedStatement = this.connection.prepareStatement(query);
 		ResultSet result = preparedStatement.executeQuery();
 		
 		while(result.next()) {
+			Product product = new Product();
 			product.setId(result.getInt(COLUMN_ID));
 			product.setName(result.getString(COLUMN_NAME));
 			product.setDescription(result.getString(COLUMN_DESCRIPTION));
