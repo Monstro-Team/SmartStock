@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.ProductDAO;
 import model.Product;
-@WebServlet( urlPatterns = {"/ProductServlet"},
+@WebServlet( urlPatterns = {"/ProductRegisterServlet"},
 		initParams = {
 				@WebInitParam(name = "product_name", value = ""),
 				@WebInitParam(name = "product_description", value = ""),
@@ -27,7 +27,7 @@ import model.Product;
 		})
 
 
-public class ProductServlet extends HttpServlet  {
+public class ProductRegisterServlet extends HttpServlet  {
 
 	private static final long serialVersionUID = -3509054968041169215L;
 
@@ -54,8 +54,8 @@ public class ProductServlet extends HttpServlet  {
 	        			Integer.valueOf(productQuantityMin).intValue(), Integer.valueOf(productQuantity).intValue(),
 	        			productSpupplier, Float.valueOf(productPrice).floatValue());
 	        	
-	        	ProductDAO productDAO = new ProductDAO();
 	        	try {
+	        		ProductDAO productDAO = new ProductDAO();
 					productDAO.includeProduct(product);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
