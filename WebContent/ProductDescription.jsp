@@ -4,15 +4,33 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="/SmartStock/css/bootstrap.min.css" media="screen">
+		<script src="/SmartStock/js/jquery-2.2.2.min.js"></script>
+		<script src="/SmartStock/js/bootstrap.min.js"></script>
+		<script src="/SmartStock/js/smart-stock.js"></script>
+		<script>
+				function disableError() {
+					if("${error}".length == 0)
+						document.getElementById("errorInfo").style.visibility = "hidden";
+				}
+		</script>
 		<title>Descrição do Produto</title>
 	</head>
 	<body>
-			Nome do produto: ${product_name}
-			<br>Descrição: ${product_description}
-			<br>Fornecedor: ${product_supplier}
-			<br>Quantidade: ${product_quantity}
-			<br>Quantidade mÃ­nima: ${product_quantity_min}
-			<br>Preço: ${product_price}
-			<br>Localização: ${product_location}
+		<div id="includedContent"></div>
+		<br><br><br>
+		<div class="container">
+			<div class="col-lg-6">
+					<div class="form-group">
+						Nome do produto: ${product_name}
+						<br>Descrição: ${product_description}
+						<br>Fornecedor: ${product_supplier}
+						<br>Quantidade: ${product_quantity}
+						<br>Quantidade mínima: ${product_quantity_min}
+						<br>Preço: ${product_price}
+						<br>Localização: ${product_location}
+					</div>
+				</div>
+			</div>
 	</body>
 </html>
