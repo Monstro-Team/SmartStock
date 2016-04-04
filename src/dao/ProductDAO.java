@@ -10,9 +10,10 @@ import model.Product;
 
 public class ProductDAO {
 	/*Script for create table:
-	 * CREATE TABLE product(product_name VARCHAR(50) NOT NULL, product_description VARCHAR(200), product_price FLOAT(3), product_supplier VARCHAR(50), product_location VARCHAR(50), product_quantity_min INTEGER, product_quantity INTEGER );
+	 * CREATE TABLE product(product_id INTEGER PRIMARY KEY AUTO_INCREMENT, product_name VARCHAR(50) NOT NULL, product_description VARCHAR(200), product_price FLOAT(3), product_supplier VARCHAR(50), product_location VARCHAR(50), product_quantity_min INTEGER, product_quantity INTEGER );
 	 */
 	final String TABLE_NAME = "product";
+	final String COLUMN_ID = "product_id";
 	final String COLUMN_NAME = "product_name";
 	final String COLUMN_DESCRIPTION = "product_description";
 	final String COLUMN_PRICE = "product_price";
@@ -27,12 +28,12 @@ public class ProductDAO {
 		this.connection = FactoryConnection.getInstance().getConnection();
 	}
 	
-	public void includeProduct(Product product) throws SQLException{
+	public int includeProduct(Product product) throws SQLException {
 		
 		String query =  "INSERT INTO "
-				+ TABLE_NAME + " ( " + COLUMN_NAME+", " + COLUMN_DESCRIPTION+", " + COLUMN_PRICE
+				+ TABLE_NAME + " (" + COLUMN_NAME+", " + COLUMN_DESCRIPTION+", " + COLUMN_PRICE
 				+ ", " + COLUMN_SUPPLIER + ", " + COLUMN_LOCATION + ", " + COLUMN_QUANTITY + ", "
-				+ COLUMN_QUANTITY_MIN + ") VALUES ( " + "\"" + product.getName() + "\", \"" 
+				+ COLUMN_QUANTITY_MIN + ") VALUES (" + "\"" + product.getName() + "\", \"" 
 				+ product.getDescription() + "\", \"" + product.getPrice() + "\", \"" 
 				+ product.getSupplier() + "\", \"" + product.getLocation() + "\", \"" 
 				+ product.getQuantity() + "\", \"" +product.getQuantityMin() + "\");";
@@ -44,6 +45,28 @@ public class ProductDAO {
 			this.updateQuery(query);
 		}
 		
+		return product.getId();
+	}
+	
+	public Product getProduct(int productId) throws SQLException {
+		String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + productId + ";";
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement preparedStatement = connection.prepareStatement(query);
+		ResultSet rs = preparedStatement.executeQuery();
+
+		System.out.println(query);
+		
+		Product product = new Product();
+		product.setId(rs.getInt(0));
+		product.setName(rs.getString(1));
+		product.setDescription(rs.getString(2));
+		product.setLocation(rs.getString(3));
+		product.setQuantityMin(rs.getInt(4));
+		product.setQuantity(rs.getInt(5));
+		product.setSupplier(rs.getString(6));
+		product.setPrice(rs.getFloat(7));
+		
+		return product;
 	}
 
 	public ArrayList<Product> getAllProducts() throws SQLException {
@@ -53,7 +76,8 @@ public class ProductDAO {
 		PreparedStatement preparedStatement = this.connection.prepareStatement(query);
 		ResultSet result = preparedStatement.executeQuery();
 		
-		while(result.next()) {			
+		while(result.next()) {
+			product.setId(result.getInt(COLUMN_ID));
 			product.setName(result.getString(COLUMN_NAME));
 			product.setDescription(result.getString(COLUMN_DESCRIPTION));
 			product.setLocation(result.getString(COLUMN_LOCATION));

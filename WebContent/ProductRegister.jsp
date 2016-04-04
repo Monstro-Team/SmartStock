@@ -17,7 +17,7 @@
 		<div id="includedContent"></div>
 		<div class="container">
 			<div class="col-lg-6">
-				<form action="/SmartStock/ProductServlet" method="post">
+				<form action="/SmartStock/ProductRegisterServlet" method="post">
 					    <div class="form-group">
 							<div class="alert alert-dismissible alert-danger" id="errorInfo">
 							  <strong>Ocorreu um erro!</strong> <a href="#" class="alert-link"></a>${error}
