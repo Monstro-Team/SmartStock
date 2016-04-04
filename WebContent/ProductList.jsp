@@ -25,16 +25,18 @@
 						    </tr>
 						</thead>
 						<tbody>
-							<tr>
 								<%
 								ArrayList<Product> list = (ArrayList<Product>) request.getAttribute("products");
 								if(list != null){
+								
 									for(Product product : list) {
+										out.println("<tr>");
 										out.println("<td>"+product.getId()+"</td>");
 									    out.println("<td>"+"<a href=\"/SmartStock/ProductDescriptionServlet?product_id="+product.getId()+"\">"+product.getName()+"</a>"+"</td>");
 									    out.println("<td>"+product.getDescription()+"</td>");
 									    out.println("<td>"+product.getQuantity()+"</td>");
 									    out.println("<td>"+product.getSupplier()+"</td>");
+									    out.println("</tr>");
 									}
 								}
 								else{
@@ -43,7 +45,6 @@
 									    	rd.forward(request,response);
 								}
 								%>
-							</tr>
 						</tbody>
 				</table>
 			</div>
