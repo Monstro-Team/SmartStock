@@ -28,6 +28,23 @@ public class ProductDAO {
 		this.connection = FactoryConnection.getInstance().getConnection();
 	}
 	
+	public void updateProduct(Product product)throws SQLException {
+		String query =  "UPDATE "
+				+ TABLE_NAME + " SET " + COLUMN_NAME+" = '"+product.getName()+"', " + COLUMN_DESCRIPTION+" = '"+product.getDescription()+"', " + COLUMN_PRICE
+				+" = '"+product.getPrice()+"'," + COLUMN_SUPPLIER +" = '"+product.getSupplier()+"', "+ COLUMN_LOCATION +" = '"+product.getLocation()+"',"+ COLUMN_QUANTITY +" = '"+product.getQuantity()+"',"
+				+ COLUMN_QUANTITY_MIN +" = '"+product.getQuantityMin()+"' WHERE "+COLUMN_ID+" = '"+product.getId()+"';";
+
+		System.out.println(query);
+		this.updateQuery(query);
+	}
+	
+	public void deleteProduct(int product_id) throws SQLException{
+		String query = "DELETE FROM "+ TABLE_NAME +" WHERE "+ COLUMN_ID +" = " +product_id; 
+		
+		System.out.println(query);
+		this.updateQuery(query);
+	}
+	
 	public int includeProduct(Product product) throws SQLException {
 		
 		String query =  "INSERT INTO "
