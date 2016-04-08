@@ -22,6 +22,7 @@
 						      <th>Descrição</th>
 						      <th>Quantidade</th>
 						      <th>Fornecedor</th>
+						      <th>Ação</th>
 						    </tr>
 						</thead>
 						<tbody>
@@ -36,6 +37,7 @@
 									    out.println("<td>"+product.getDescription()+"</td>");
 									    out.println("<td>"+product.getQuantity()+"</td>");
 									    out.println("<td>"+product.getSupplier()+"</td>");
+									    out.println("<td>"+"<a href=\"/SmartStock/ProductDeleterServlet?product_id="+product.getId()+"\">Deletar</a>"+"</td>");
 									    out.println("</tr>");
 									}
 								}

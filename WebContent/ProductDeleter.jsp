@@ -21,7 +21,7 @@
 		<br><br><br>
 		<div class="container">
 			<div class="col-lg-6">
-				<form action="/SmartStock/ProductRegisterServlet?product_id=${product_id}&product_deleter=true" method="post">
+				<form action="/SmartStock/ProductDeleterServlet?product_id=${product_id}&product_deleter=true" method="post">
 					<div class="form-group">
 						Nome do produto: ${product_name}
 						<br>Descrição: ${product_description}
@@ -30,7 +30,8 @@
 						<br>Quantidade mínima: ${product_quantity_min}
 						<br>Preço: ${product_price}
 						<br>Localização: ${product_location}
-						<button class="btn btn-success" type="submit">Deletar</a>				
+						<input type="hidden" name="product_deleter" value="true">
+						<button class="btn btn-danger" type="submit">Deletar</a>				
 					</div>
 				</form>
 			</div>

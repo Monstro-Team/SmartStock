@@ -40,6 +40,7 @@ public class ProductDeleterServlet  extends HttpServlet {
 		product_id = Integer.parseInt(request.getParameter("product_id"));
 		product_deleter = request.getParameter("product_deleter");
 		ProductDAO productDAO = null;
+		if(product_deleter != null)	
 		if(product_deleter.length() != 0){
 			if(product_deleter.equals("true")){
 				try {
@@ -68,7 +69,7 @@ public class ProductDeleterServlet  extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		request.setAttribute("product_id", product.getId());
     	request.setAttribute("product_name", product.getName());
     	request.setAttribute("product_description", product.getDescription());
     	request.setAttribute("product_supplier", product.getSupplier());

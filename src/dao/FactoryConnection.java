@@ -10,12 +10,8 @@ public class FactoryConnection {
 	
 	private final String local = "jdbc:mysql://localhost/smart_stock";
 	private final String user = "root";
-<<<<<<< HEAD
-	private final String password = "12345";
-=======
-	private final String password = "Mudar123";
->>>>>>> d52ac42... Creating validators to username and password
-	
+	private final String password = "";
+
 	private static FactoryConnection instance;
 
 	private FactoryConnection() {
