@@ -51,49 +51,34 @@ public class ProductEditorServlet extends HttpServlet{
         String productLocation = request.getParameter("product_location");
         String productPrice = request.getParameter("product_price");
         
-        if(productId != null){
-
-	        if(productName != null){
+	    if(productName != null){
 	        		resultValidation = Validator.validadeIsProductCorrect(productName, productDescription,
 	        				productLocation, productQuantity, productQuantityMin, productSpupplier, productPrice);
-	        }
-	        if(resultValidation != null ){
-	        		product = new Product(productName, productDescription, productLocation, 
-	        			Integer.valueOf(productQuantityMin).intValue(), Integer.valueOf(productQuantity).intValue(),
-	        			productSpupplier, Float.valueOf(productPrice).floatValue());
-	        }
-	        	
-	        	request.setAttribute("product_name", productName);
-	        	request.setAttribute("product_description", productDescription);
-	        	request.setAttribute("product_supplier", productSpupplier);
-	        	request.setAttribute("product_quantity", productQuantity);
-	        	request.setAttribute("product_quantity_min", productQuantityMin);
-	        	request.setAttribute("product_location", productLocation);
-	        	request.setAttribute("product_price", productPrice);
-	        	RequestDispatcher rd = 
-		        request.getRequestDispatcher("/ProductDescription.jsp");
-	        	rd.forward(request,response);
-	        }
-	        else{
-	        	
-	        	if(productName == null){
-	        		try {
-						product = productDAO.getProduct(Integer.parseInt(productId));
-					} catch (NumberFormatException | SQLException e) {
+		    if(resultValidation.length() == 0 ){
+		        	product = new Product(productName, productDescription, productLocation, 
+		        		Integer.valueOf(productQuantityMin).intValue(), Integer.valueOf(productQuantity).intValue(),
+		        		productSpupplier, Float.valueOf(productPrice).floatValue());
+		        	product.setId(Integer.parseInt(productId));
+		        	try {
+						productDAO.updateProduct(product);
+					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-	        		productName = product.getName();
-	        		productDescription = product.getDescription();
-	        		productLocation = product.getLocation();
-	        		productPrice = Float.toString(product.getPrice());
-	        		productQuantity = Integer.toString(product.getQuantity());
-	        		productQuantityMin = Integer.toString(product.getQuantityMin());
-	        		productSpupplier = product.getSupplier();
-	        	}
-	        	else{
-	        		request.setAttribute("error", resultValidation);
-	        	}
+		        	request.setAttribute("product_id", productId);
+		        	request.setAttribute("product_name", productName);
+		        	request.setAttribute("product_description", productDescription);
+		        	request.setAttribute("product_supplier", productSpupplier);
+		        	request.setAttribute("product_quantity", productQuantity);
+		        	request.setAttribute("product_quantity_min", productQuantityMin);
+		        	request.setAttribute("product_location", productLocation);
+		        	request.setAttribute("product_price", productPrice);
+		        	RequestDispatcher rd = 
+			        request.getRequestDispatcher("/ProductDescription.jsp");
+		        	rd.forward(request,response);
+		    }
+		    else{
+		    	request.setAttribute("product_id", productId);
 	        	request.setAttribute("product_name", productName);
 	        	request.setAttribute("product_description", productDescription);
 	        	request.setAttribute("product_supplier", productSpupplier);
@@ -101,16 +86,31 @@ public class ProductEditorServlet extends HttpServlet{
 	        	request.setAttribute("product_quantity_min", productQuantityMin);
 	        	request.setAttribute("product_location", productLocation);
 	        	request.setAttribute("product_price", productPrice);
-	        	RequestDispatcher rd = 
-		        request.getRequestDispatcher("/ProductEditor.jsp");
-	        	rd.forward(request,response);
-	        }
-        }
-      /*  else{
+        		request.setAttribute("error", resultValidation);
+            	RequestDispatcher rd = 
+            	        request.getRequestDispatcher("/ProductEditor.jsp");
+                    	rd.forward(request,response);
+		    }
+	    }
+	    else{
+	    	try {
+				product = productDAO.getProduct(Integer.parseInt(productId));
+			} catch (NumberFormatException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	request.setAttribute("product_id", product.getId());
+        	request.setAttribute("product_name", product.getName());
+        	request.setAttribute("product_description", product.getDescription());
+        	request.setAttribute("product_supplier", product.getSupplier());
+        	request.setAttribute("product_quantity", product.getQuantity());
+        	request.setAttribute("product_quantity_min", product.getQuantityMin());
+        	request.setAttribute("product_location", product.getLocation());
+        	request.setAttribute("product_price", product.getPrice());
         	RequestDispatcher rd = 
-	        request.getRequestDispatcher("/ProductEditer.jsp");
+	        request.getRequestDispatcher("/ProductEditor.jsp");
         	rd.forward(request,response);
-        }*/
-
+	    }
+	}
 }
 

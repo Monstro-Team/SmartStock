@@ -17,7 +17,7 @@
 		<div id="includedContent"></div>
 		<div class="container">
 			<div class="col-lg-6">
-				<form action="/SmartStock/ProductEditerServlet" method="post">
+				<form action="/SmartStock/ProductEditorServlet?product_id=${product_id}" method="post">
 					    <div class="form-group">
 							<div class="alert alert-dismissible alert-danger" id="errorInfo">
 								<br>

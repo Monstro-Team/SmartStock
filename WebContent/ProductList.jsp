@@ -37,7 +37,7 @@
 									    out.println("<td>"+product.getDescription()+"</td>");
 									    out.println("<td>"+product.getQuantity()+"</td>");
 									    out.println("<td>"+product.getSupplier()+"</td>");
-									    out.println("<td>"+"<a href=\"/SmartStock/ProductDeleterServlet?product_id="+product.getId()+"\">Deletar</a>"+"</td>");
+									    out.println("<td>"+"<a href=\"/SmartStock/ProductDeleterServlet?product_id="+product.getId()+"\">Deletar </a><a href=\"/SmartStock/ProductEditorServlet?product_id="+product.getId()+"\">Editar</a>"+"</td>");
 									    out.println("</tr>");
 									}
 								}
