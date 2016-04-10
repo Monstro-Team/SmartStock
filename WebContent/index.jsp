@@ -9,7 +9,7 @@
 <script src="/SmartStock/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-    	$("#includedContent").load("http://localhost:8080/SmartStock/menu_login.html");
+    	$("#includedContent").load("../SmartStock/menu_login.html");
 	});
 </script>
 <script>

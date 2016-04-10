@@ -5,7 +5,11 @@
 		<link rel="stylesheet" href="/SmartStock/css/bootstrap.min.css" media="screen">
 		<script src="/SmartStock/js/jquery-2.2.2.min.js"></script>
 		<script src="/SmartStock/js/bootstrap.min.js"></script>
-		<script src="/SmartStock/js/smart-stock.js"></script>
+		<script type="text/javascript">
+			$(function(){
+		    	$("#includedContent").load("../SmartStock/menu.html");
+			});
+		</script>
 	</head>
 	<body>
    		<div id="includedContent"></div>
