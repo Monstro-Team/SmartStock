@@ -109,8 +109,10 @@ public class ProductEditorServlet extends HttpServlet{
 	    	try {
 				product = productDAO.getProduct(Integer.parseInt(productId));
 			} catch (NumberFormatException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+        		request.setAttribute("error", "Ocorreu um erro no banco de dados.");
+            	RequestDispatcher rd = 
+            	        request.getRequestDispatcher("/ProductEditor.jsp");
+                    	rd.forward(request,response);
 			}
 	    	request.setAttribute("product_id", product.getId());
         	request.setAttribute("product_name", product.getName());
