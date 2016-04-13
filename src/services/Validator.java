@@ -45,7 +45,7 @@ public class Validator {
 			String location, String quantity, String quantityMin, String supplier, String price){
 		StringBuffer result = new StringBuffer();
 		if(!validateStringEmpty(name)){
-			result.append("Digite o nome do produto corretamente.");
+			result.append("<br>Digite o nome do produto corretamente.");
 		}
 		if(!validateStringEmpty(description)){
 			result.append("<br>Digite a descrição corretamente.");

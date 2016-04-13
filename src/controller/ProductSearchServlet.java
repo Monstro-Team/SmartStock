@@ -33,10 +33,18 @@ public class ProductSearchServlet extends HttpServlet  {
 			productDAO = new ProductDAO();
 			products = productDAO.getAllProducts();
 		} catch (SQLException e) {
-			e.printStackTrace();
+    		request.setAttribute("error", "Ocorreu um erro no banco de dados!");
+        	RequestDispatcher rd = 
+        	        request.getRequestDispatcher("/ProductSearch.jsp");
+                	rd.forward(request,response);
 		}
-		if(productSearch != null)
+		if(productSearch != null & productSearch.length() != 0){
 			request.setAttribute("products", search(products,productSearch));
+		if(search(products, productSearch).size() == 0)
+    		request.setAttribute("error", "<br>Não existem produtos com o nome ou a descrição pesquisada!");
+		}
+		else
+    		request.setAttribute("error", "<br>Digite algo para ser pesquisado!");
 		RequestDispatcher rd = 
         request.getRequestDispatcher("/ProductSearch.jsp");
     	rd.forward(request,response);
@@ -45,11 +53,11 @@ public class ProductSearchServlet extends HttpServlet  {
 	private ArrayList<Product> search(final ArrayList<Product> allProducts,final String search){
 		ArrayList<Product> resultSearch = new ArrayList<Product>();
 		for(Product product:allProducts){
-			if(product.getName().contains(search)){
+			if(product.getName().toLowerCase().contains(search.toLowerCase())){
 				resultSearch.add(product);
 			}
 			else{
-				if(product.getDescription().contains(search)){
+				if(product.getDescription().toLowerCase().contains(search.toLowerCase())){
 					resultSearch.add(product);
 				}
 			}

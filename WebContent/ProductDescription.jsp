@@ -11,7 +11,7 @@
 		<script>
 				function disableError() {
 					if("${error}".length == 0)
-						document.getElementById("errorInfo").style.visibility = "hidden";
+						document.getElementById("errorInfo").style.display = "none";
 				}
 		</script>
 		<title>Descrição do Produto</title>

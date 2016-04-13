@@ -8,12 +8,26 @@
 		<script src="/SmartStock/js/jquery-2.2.2.min.js"></script>
 		<script src="/SmartStock/js/bootstrap.min.js"></script>
 		<script src="/SmartStock/js/smart-stock.js"></script>
+		<script>
+				function disableInformation() {
+					if("${info}".length == 0)
+						document.getElementById("information").style.display = "none";
+				}
+				function disableError() {
+					if("${error}".length == 0)
+						document.getElementById("errorInfo").style.display = "none";;
+				}
+		</script>
 	</head>	
-	<body>
+		<body onload="disableInformation()">
 		<div id="includedContent"></div>
 			<br><br><br>
 			<div class="container">
 				<div class="col-lg-6">
+					<div class="alert alert-dismissible alert-success" id="information">
+  						<button type="button" class="close" data-dismiss="alert">&times;</button>
+  						<strong>Informação:</strong> <a href="#" class="alert-link">${info}</a>
+					</div>
 					<table class="table table-striped table-hover ">
 						<thead>
 						    <tr>

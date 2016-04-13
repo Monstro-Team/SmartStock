@@ -9,7 +9,7 @@
 		<script>
 				function disableError() {
 					if("${error}".length == 0)
-						document.getElementById("errorInfo").style.visibility = "hidden";
+						document.getElementById("errorInfo").style.display = "none";;
 				}
 		</script>
 	</head>
@@ -19,10 +19,11 @@
 			<div class="col-lg-6">
 				<form action="/SmartStock/ProductRegisterServlet" method="post">
 					    <div class="form-group">
+					    	<br>
+							<br>
+							<br>
 							<div class="alert alert-dismissible alert-danger" id="errorInfo">
-								<br>
-								<br>
-							  <strong>Ocorreu um erro!</strong> <a href="#" class="alert-link"></a>${error}
+								<strong>Ocorreu um erro!</strong><a href="#" class="alert-link"></a>${error}
 							</div>
 							Nome do produto:
 							<input class="form-control" id="inputDefault" type="text" value="${product_name}" name="product_name">

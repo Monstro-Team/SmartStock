@@ -8,12 +8,21 @@
 		<script src="/SmartStock/js/jquery-2.2.2.min.js"></script>
 		<script src="/SmartStock/js/bootstrap.min.js"></script>
 		<script src="/SmartStock/js/smart-stock.js"></script>
+		<script>
+				function disableError() {
+					if("${error}".length == 0)
+						document.getElementById("errorInfo").style.display = "none";;
+				}
+		</script>
 	</head>	
-	<body>
+	<body onload="disableError()">
 		<div id="includedContent"></div>
 			<br><br><br>
 			<div class="container">
 				<div class="col-lg-6">
+					<div class="alert alert-dismissible alert-danger" id="errorInfo">
+						<strong>Ocorreu um erro!</strong><a href="#" class="alert-link"></a>${error}
+					</div>
 					<form action="/SmartStock/ProductSearchServlet" method="post">
 					    <div class="form-group">
 					    	Pesquisar:

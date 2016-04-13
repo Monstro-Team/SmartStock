@@ -23,7 +23,8 @@ import model.Product;
 				@WebInitParam(name = "product_quantity_min", value = ""),
 				@WebInitParam(name = "product_location", value = ""),
 				@WebInitParam(name = "product_price", value = ""),
-				@WebInitParam(name = "error", value = "")
+				@WebInitParam(name = "error", value = ""),
+				@WebInitParam(name = "info", value = "")
 		})
 
 
@@ -58,19 +59,29 @@ public class ProductRegisterServlet extends HttpServlet  {
 	        		ProductDAO productDAO = new ProductDAO();
 					productDAO.includeProduct(product);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					System.out.println("Entrouu no catch "+e);
+		        	request.setAttribute("error", "Erro no banco de dados!");
+		        	request.setAttribute("product_name", productName);
+		        	request.setAttribute("product_description", productDescription);
+		        	request.setAttribute("product_supplier", productSpupplier);
+		        	request.setAttribute("product_quantity", productQuantity);
+		        	request.setAttribute("product_quantity_min", productQuantityMin);
+		        	request.setAttribute("product_location", productLocation);
+		        	request.setAttribute("product_price", productPrice);
+		        	RequestDispatcher rd = 
+			        request.getRequestDispatcher("/ProductRegister.jsp");
+		        	rd.forward(request,response);
 				}
 	        	
-	        	request.setAttribute("product_name", productName);
+	        	/*request.setAttribute("product_name", productName);
 	        	request.setAttribute("product_description", productDescription);
 	        	request.setAttribute("product_supplier", productSpupplier);
 	        	request.setAttribute("product_quantity", productQuantity);
 	        	request.setAttribute("product_quantity_min", productQuantityMin);
 	        	request.setAttribute("product_location", productLocation);
-	        	request.setAttribute("product_price", productPrice);
+	        	request.setAttribute("product_price", productPrice);*/
+	        	request.setAttribute("info", "Produto cadastrado com sucesso!");
 	        	RequestDispatcher rd = 
-		        request.getRequestDispatcher("/ProductDescription.jsp");
+		        request.getRequestDispatcher("/ProductList.jsp");
 	        	rd.forward(request,response);
 	        }
 	        else{
