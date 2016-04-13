@@ -25,10 +25,7 @@
 					<div class="form-group">
 						Nome do produto: ${product_name}
 						<br>Descrição: ${product_description}
-						<br>Fornecedor: ${product_supplier}
-						<br>Quantidade: ${product_quantity}
 						<br>Quantidade mínima: ${product_quantity_min}
-						<br>Preço: ${product_price}
 						<br>Localização: ${product_location}
 						<input type="hidden" name="product_deleter" value="true">
 						<button class="btn btn-danger" type="submit">Deletar</a>				

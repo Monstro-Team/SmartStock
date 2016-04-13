@@ -42,7 +42,7 @@ public class Validator {
 	}
 
 	public static String validadeIsProductCorrect(String name, String description, 
-			String location, String quantity, String quantityMin, String supplier, String price){
+			String location, String quantityMin){
 		StringBuffer result = new StringBuffer();
 		if(!validateStringEmpty(name)){
 			result.append("<br>Digite o nome do produto corretamente.");
@@ -53,14 +53,20 @@ public class Validator {
 		if(!validateStringEmpty(location)){
 			result.append("<br>Digite a localização corretamente.");
 		}
+		if(!validateIsNumberIntegerPositiveNotNull(quantityMin)){
+			result.append("<br>A quantidade mínima tem que ser um número e maior que zero.");
+		}
+		return result.toString();
+	}
+	public static String validadeIsStockCorrect(String supplier, String quantity, 
+			String price){
+		StringBuffer result = new StringBuffer();
+		
 		if(!validateStringEmpty(supplier)){
 			result.append("<br>Digite o fornecedor corretamente.");
 		}
 		if(!validateIsNumberIntegerPositiveNotNull(quantity)){
 			result.append("<br>A quantidade tem que ser um número e maior que zero.");
-		}
-		if(!validateIsNumberIntegerPositiveNotNull(quantityMin)){
-			result.append("<br>A quantidade mínima tem que ser um número e maior que zero.");
 		}
 		if(!validateIsNumberFloatPositiveNotNull(price)){
 			result.append("<br>O preço do produto tem que ser um número e maior que zero.");

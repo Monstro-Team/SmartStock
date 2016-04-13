@@ -20,11 +20,8 @@ initParams = {
 		@WebInitParam(name = "product_id", value = ""),
 		@WebInitParam(name = "product_name", value = ""),
 		@WebInitParam(name = "product_description", value = ""),
-		@WebInitParam(name = "product_supplier", value = ""),
-		@WebInitParam(name = "product_quantity", value = ""),
 		@WebInitParam(name = "product_quantity_min", value = ""),
 		@WebInitParam(name = "product_location", value = ""),
-		@WebInitParam(name = "product_price", value = ""),
 		@WebInitParam(name = "info", value = "")
 })
 public class ProductEditorServlet extends HttpServlet{
@@ -39,11 +36,8 @@ public class ProductEditorServlet extends HttpServlet{
         String productId = request.getParameter("product_id");
         String productName = request.getParameter("product_name");
         String productDescription = request.getParameter("product_description");
-        String productSpupplier = request.getParameter("product_supplier");
-        String productQuantity = request.getParameter("product_quantity");
         String productQuantityMin = request.getParameter("product_quantity_min");
         String productLocation = request.getParameter("product_location");
-        String productPrice = request.getParameter("product_price");
         
 		try {
 			productDAO = new ProductDAO();
@@ -51,11 +45,8 @@ public class ProductEditorServlet extends HttpServlet{
 			request.setAttribute("error", "Erro no banco de dados!");
         	request.setAttribute("product_name", productName);
         	request.setAttribute("product_description", productDescription);
-        	request.setAttribute("product_supplier", productSpupplier);
-        	request.setAttribute("product_quantity", productQuantity);
         	request.setAttribute("product_quantity_min", productQuantityMin);
         	request.setAttribute("product_location", productLocation);
-        	request.setAttribute("product_price", productPrice);
         	RequestDispatcher rd = 
 	        request.getRequestDispatcher("/ProductEditor.jsp");
         	rd.forward(request,response);
@@ -63,11 +54,10 @@ public class ProductEditorServlet extends HttpServlet{
         
 	    if(productName != null){
 	        		resultValidation = Validator.validadeIsProductCorrect(productName, productDescription,
-	        				productLocation, productQuantity, productQuantityMin, productSpupplier, productPrice);
+	        				productLocation, productQuantityMin);
 		    if(resultValidation.length() == 0 ){
 		        	product = new Product(productName, productDescription, productLocation, 
-		        		Integer.valueOf(productQuantityMin).intValue(), Integer.valueOf(productQuantity).intValue(),
-		        		productSpupplier, Float.valueOf(productPrice).floatValue());
+		        		Integer.valueOf(productQuantityMin).intValue());
 		        	product.setId(Integer.parseInt(productId));
 		        	try {
 						productDAO.updateProduct(product);
@@ -75,11 +65,8 @@ public class ProductEditorServlet extends HttpServlet{
 						request.setAttribute("error", "Erro no b50anco de dados!");
 			        	request.setAttribute("product_name", productName);
 			        	request.setAttribute("product_description", productDescription);
-			        	request.setAttribute("product_supplier", productSpupplier);
-			        	request.setAttribute("product_quantity", productQuantity);
 			        	request.setAttribute("product_quantity_min", productQuantityMin);
 			        	request.setAttribute("product_location", productLocation);
-			        	request.setAttribute("product_price", productPrice);
 			        	RequestDispatcher rd = 
 				        request.getRequestDispatcher("/ProductEditor.jsp");
 			        	rd.forward(request,response);
@@ -94,11 +81,8 @@ public class ProductEditorServlet extends HttpServlet{
 		    	request.setAttribute("product_id", productId);
 	        	request.setAttribute("product_name", productName);
 	        	request.setAttribute("product_description", productDescription);
-	        	request.setAttribute("product_supplier", productSpupplier);
-	        	request.setAttribute("product_quantity", productQuantity);
 	        	request.setAttribute("product_quantity_min", productQuantityMin);
 	        	request.setAttribute("product_location", productLocation);
-	        	request.setAttribute("product_price", productPrice);
         		request.setAttribute("error", resultValidation);
             	RequestDispatcher rd = 
             	        request.getRequestDispatcher("/ProductEditor.jsp");
@@ -117,11 +101,8 @@ public class ProductEditorServlet extends HttpServlet{
 	    	request.setAttribute("product_id", product.getId());
         	request.setAttribute("product_name", product.getName());
         	request.setAttribute("product_description", product.getDescription());
-        	request.setAttribute("product_supplier", product.getSupplier());
-        	request.setAttribute("product_quantity", product.getQuantity());
         	request.setAttribute("product_quantity_min", product.getQuantityMin());
         	request.setAttribute("product_location", product.getLocation());
-        	request.setAttribute("product_price", product.getPrice());
         	RequestDispatcher rd = 
 	        request.getRequestDispatcher("/ProductEditor.jsp");
         	rd.forward(request,response);

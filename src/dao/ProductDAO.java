@@ -10,7 +10,7 @@ import model.Product;
 
 public class ProductDAO {
 	/*Script for create table:
-	 * CREATE TABLE product(product_id INTEGER PRIMARY KEY AUTO_INCREMENT, product_name VARCHAR(50) NOT NULL, product_description VARCHAR(200), product_price FLOAT(3), product_supplier VARCHAR(50), product_location VARCHAR(50), product_quantity_min INTEGER, product_quantity INTEGER );
+	 * CREATE TABLE product(product_id INTEGER PRIMARY KEY AUTO_INCREMENT, product_name VARCHAR(50) NOT NULL, product_description VARCHAR(200), product_location VARCHAR(50), product_quantity_min INTEGER );
 	 */
 	final String TABLE_NAME = "product";
 	final String COLUMN_ID = "product_id";
@@ -31,8 +31,7 @@ public class ProductDAO {
 	public void updateProduct(Product product)throws SQLException {
 		String query =  "UPDATE "
 				+ TABLE_NAME + " SET " + COLUMN_NAME+"='"+product.getName()+"', " + COLUMN_DESCRIPTION+"='"+product.getDescription()+"', " + COLUMN_PRICE
-				+"="+product.getPrice()+", " + COLUMN_SUPPLIER +"='"+product.getSupplier()+"', "+ COLUMN_LOCATION +"='"+product.getLocation()+"',"+ COLUMN_QUANTITY +"="+product.getQuantity()+", "
-				+ COLUMN_QUANTITY_MIN +"="+product.getQuantityMin()+" WHERE "+COLUMN_ID+"="+product.getId()+";";
+				+ COLUMN_LOCATION +"='"+product.getLocation()+"',"+ COLUMN_QUANTITY_MIN +"="+product.getQuantityMin()+" WHERE "+COLUMN_ID+"="+product.getId()+";";
 
 		System.out.println(query);
 		this.updateQuery(query);
@@ -48,12 +47,11 @@ public class ProductDAO {
 	public int includeProduct(Product product) throws SQLException {
 		
 		String query =  "INSERT INTO "
-				+ TABLE_NAME + " (" + COLUMN_NAME+", " + COLUMN_DESCRIPTION+", " + COLUMN_PRICE
-				+ ", " + COLUMN_SUPPLIER + ", " + COLUMN_LOCATION + ", " + COLUMN_QUANTITY + ", "
-				+ COLUMN_QUANTITY_MIN + ") VALUES (" + "\"" + product.getName() + "\", \"" 
-				+ product.getDescription() + "\", \"" + product.getPrice() + "\", \"" 
-				+ product.getSupplier() + "\", \"" + product.getLocation() + "\", \"" 
-				+ product.getQuantity() + "\", \"" +product.getQuantityMin() + "\");";
+				+ TABLE_NAME + " (" + COLUMN_NAME+", " + COLUMN_DESCRIPTION+", " 
+				+ COLUMN_LOCATION + ", " + COLUMN_QUANTITY_MIN + 
+				") VALUES (" + "\"" + product.getName() + "\", \"" 
+				+ product.getDescription() + "\", \"" + product.getLocation() + "\", \"" 
+				+ product.getQuantityMin() + "\");";
 		
 		System.out.println(query);
 		
@@ -90,9 +88,6 @@ public class ProductDAO {
 			product.setDescription(result.getString(COLUMN_DESCRIPTION));
 			product.setLocation(result.getString(COLUMN_LOCATION));
 			product.setQuantityMin(result.getInt(COLUMN_QUANTITY_MIN));
-			product.setQuantity(result.getInt(COLUMN_QUANTITY));
-			product.setSupplier(result.getString(COLUMN_SUPPLIER));
-			product.setPrice(result.getFloat(COLUMN_PRICE));
 			
 			products.add(product);
 		}

@@ -29,14 +29,8 @@
 							<input class="form-control" id="inputDefault" type="text" value="${product_name}" name="product_name">
 							<br>Descrição:
 							<input class="form-control" id="inputDefault" type="text" value="${product_description}" name="product_description">
-							<br>Fornecedor:
-							<input class="form-control" id="inputDefault" type="text" value="${product_supplier}" name="product_supplier">
-							<br>Quantidade:
-							<input class="form-control" id="inputDefault" type="text" value="${product_quantity}" name="product_quantity">
 							<br>Quantidade mí­nima:
 							<input class="form-control" id="inputDefault" type="text" value="${product_quantity_min}" name="product_quantity_min">
-							<br>Preço:
-							<input class="form-control" id="inputDefault" type="text" value="${product_price}" name="product_price">
 							<br>Localização:
 							<input class="form-control" id="inputDefault" type="text" value="${product_location}" name="product_location">
 							<br>

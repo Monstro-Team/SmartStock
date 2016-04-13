@@ -36,8 +36,6 @@
 						      <th>#</th>
 						      <th>Nome</th>
 						      <th>Descrição</th>
-						      <th>Quantidade</th>
-						      <th>Fornecedor</th>
 						      <th>Ação</th>
 						    </tr>
 						</thead>
@@ -51,8 +49,6 @@
 										out.println("<td>"+product.getId()+"</td>");
 									    out.println("<td>"+"<a href=\"/SmartStock/ProductDescriptionServlet?product_id="+product.getId()+"\">"+product.getName()+"</a>"+"</td>");
 									    out.println("<td>"+product.getDescription()+"</td>");
-									    out.println("<td>"+product.getQuantity()+"</td>");
-									    out.println("<td>"+product.getSupplier()+"</td>");
 									    out.println("<td>"+"<a href=\"/SmartStock/ProductDeleterServlet?product_id="+product.getId()+"\">Deletar </a><a href=\"/SmartStock/ProductEditorServlet?product_id="+product.getId()+"\">Editar</a>"+"</td>");
 									    out.println("</tr>");
 									}

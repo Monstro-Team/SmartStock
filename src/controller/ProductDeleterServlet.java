@@ -19,11 +19,8 @@ initParams = {
 		@WebInitParam(name = "product_id", value = ""),
 		@WebInitParam(name = "product_name", value = ""),
 		@WebInitParam(name = "product_description", value = ""),
-		@WebInitParam(name = "product_supplier", value = ""),
-		@WebInitParam(name = "product_quantity", value = ""),
 		@WebInitParam(name = "product_quantity_min", value = ""),
 		@WebInitParam(name = "product_location", value = ""),
-		@WebInitParam(name = "product_price", value = ""),
 		@WebInitParam(name = "product_deleter", value = "")
 })
 
@@ -72,11 +69,8 @@ public class ProductDeleterServlet  extends HttpServlet {
 		request.setAttribute("product_id", product.getId());
     	request.setAttribute("product_name", product.getName());
     	request.setAttribute("product_description", product.getDescription());
-    	request.setAttribute("product_supplier", product.getSupplier());
-    	request.setAttribute("product_quantity", product.getQuantity());
     	request.setAttribute("product_quantity_min", product.getQuantityMin());
     	request.setAttribute("product_location", product.getLocation());
-    	request.setAttribute("product_price", product.getPrice());
 
     	RequestDispatcher rd = 
         request.getRequestDispatcher("/ProductDeleter.jsp");

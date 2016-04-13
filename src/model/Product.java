@@ -6,23 +6,17 @@ public class Product {
 	private String description;
 	private String location;
 	private int quantityMin;
-	private int quantity;
-	private String supplier;
-	private float price;
 	
 	public Product() {
 		
 	}
 	
-	public Product(String name, String description, String location, int quantityMin, int quantity, String supplier, float price) {
+	public Product(String name, String description, String location, int quantityMin) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.location = location;
 		this.quantityMin = quantityMin;
-		this.quantity = quantity;
-		this.supplier = supplier;
-		this.price = price;
 	}
 	
 	public int getId() {
@@ -63,29 +57,5 @@ public class Product {
 	
 	public void setQuantityMin(int quantityMin) {
 		this.quantityMin = quantityMin;
-	}
-	
-	public int getQuantity() {
-		return quantity;
-	}
-	
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	
-	public String getSupplier() {
-		return supplier;
-	}
-	
-	public void setSupplier(String supplier) {
-		this.supplier = supplier;
-	}
-	
-	public void setPrice(float price) {
-		this.price = price;
-	}
-	
-	public float getPrice() {
-		return price;
 	}
 }
