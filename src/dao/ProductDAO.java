@@ -44,7 +44,7 @@ public class ProductDAO {
 		this.updateQuery(query);
 	}
 	
-	public int includeProduct(Product product) throws SQLException {
+	public void includeProduct(Product product) throws SQLException {
 		
 		String query =  "INSERT INTO "
 				+ TABLE_NAME + " (" + COLUMN_NAME+", " + COLUMN_DESCRIPTION+", " 
@@ -59,8 +59,6 @@ public class ProductDAO {
 
 			this.updateQuery(query);
 		}
-		
-		return product.getId();
 	}
 	
 	public Product getProduct(int productId) throws SQLException {
