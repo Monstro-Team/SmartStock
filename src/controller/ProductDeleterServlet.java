@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ProductDAO;
+import dao.StockDAO;
 import model.Product;
 
 @WebServlet(urlPatterns = {"/ProductDeleterServlet"},
@@ -37,18 +38,33 @@ public class ProductDeleterServlet  extends HttpServlet {
 		product_id = Integer.parseInt(request.getParameter("product_id"));
 		product_deleter = request.getParameter("product_deleter");
 		ProductDAO productDAO = null;
+		StockDAO stockDAO = null;
 		if(product_deleter != null)	
 		if(product_deleter.length() != 0){
 			if(product_deleter.equals("true")){
 				try {
 					productDAO = new ProductDAO();
+					stockDAO = new StockDAO();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 				try {
-					productDAO.deleteProduct(product_id);
+					if(stockDAO.getAllStockByProductId(product_id).size() == 0)
+						productDAO.deleteProduct(product_id);
+					else{
+						product = productDAO.getProduct(product_id);
+						request.setAttribute("product_id", product.getId());
+				    	request.setAttribute("product_name", product.getName());
+				    	request.setAttribute("product_description", product.getDescription());
+				    	request.setAttribute("product_quantity_min", product.getQuantityMin());
+				    	request.setAttribute("product_location", product.getLocation());
+						request.setAttribute("error", "Existe um estoque vinculado ao produto, delete-o para deletar o produto.");
+				    	RequestDispatcher rd = 
+				    	        request.getRequestDispatcher("/ProductDeleter.jsp");
+				    	    	rd.forward(request,response);
+				    	    	return;
+					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

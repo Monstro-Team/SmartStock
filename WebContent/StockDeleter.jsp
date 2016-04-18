@@ -14,22 +14,19 @@
 						document.getElementById("errorInfo").style.display = "none";
 				}
 		</script>
-		<title>Deletar um Produto</title>
+		<title>Deletar um Estoque</title>
 	</head>
-	<body onload="disableError()">
+	<body>
 		<div id="includedContent"></div>
 		<br><br><br>
 		<div class="container">
 			<div class="col-lg-6">
-				<div class="alert alert-dismissible alert-danger" id="errorInfo">
-					<strong>Ocorreu um erro!</strong><a href="#" class="alert-link"></a>${error}
-				</div>
-				<form action="/SmartStock/ProductDeleterServlet?product_id=${product_id}&product_deleter=true" method="post">
+				<form action="/SmartStock/StockDeleterServlet?stock_id=${stock_id}&stock_deleter=true" method="post">
 					<div class="form-group">
-						Nome do produto: ${product_name}
-						<br>Descrição: ${product_description}
-						<br>Quantidade mínima: ${product_quantity_min}
-						<br>Localização: ${product_location}
+						Id do produto: ${stock_id_product}
+						<br>Preço: ${stock_price}
+						<br>Quantidade do estoque: ${stock_quantity}
+						<br>Fornecedor: ${stock_supplier}
 						<input type="hidden" name="product_deleter" value="true">
 						<button class="btn btn-danger" type="submit">Deletar</a>				
 					</div>

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Product;
 import model.Stock;
 
 public class StockDAO {
@@ -43,6 +44,42 @@ public class StockDAO {
 		
 	}
 	
+	public Stock getStock(int stockId) throws SQLException {
+		ArrayList<Stock> stocks = getAllStock();
+		
+		for(Stock stock: stocks){
+			if(stock.getId() == stockId)
+				return stock;
+		}
+		
+		return null;
+	}
+	
+	public ArrayList<Stock> getAllStock() throws SQLException {
+		ArrayList<Stock> stocks = new ArrayList<Stock>();
+		
+		String query = "SELECT * FROM " + TABLE_NAME + ";";
+		PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+		ResultSet result = preparedStatement.executeQuery();
+		
+		while(result.next()) {
+			Stock stock = new Stock();
+			stock.setId(result.getInt(COLUMN_ID));
+			stock.setIdProduct(result.getInt(COLUMN_PRODUCT_ID));
+			stock.setPrice(result.getFloat(COLUMN_PRICE));
+			stock.setQuantity(result.getInt(COLUMN_QUANTITY));
+			stock.setSupplier(result.getString(COLUMN_SUPPLIER));
+			
+			stocks.add(stock);
+		}
+		
+		preparedStatement.close();
+		result.close();
+		
+		return stocks;
+	}
+
+	
 	public ArrayList<Stock> getAllStockByProductId(int productId) throws SQLException {
 		ArrayList<Stock> stocks = new ArrayList<Stock>();
 		
@@ -66,7 +103,13 @@ public class StockDAO {
 		
 		return stocks;
 	}
-
+	
+	public void deleteStock(int stock_id) throws SQLException{
+		String query = "DELETE FROM "+ TABLE_NAME +" WHERE "+ COLUMN_ID +" = " +stock_id; 
+		
+		System.out.println(query);
+		this.updateQuery(query);
+	}
 	
 	private void updateQuery( String query ) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();

@@ -11,31 +11,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Product;
-import dao.ProductDAO;
 
+import dao.StockDAO;
+import model.Stock;
 
-@WebServlet(urlPatterns = {"/ProductListServlet"},
+@WebServlet(urlPatterns = {"/StockListServlet"},
 initParams = {
 		@WebInitParam(name = "products", value = ""),
 })
-public class ProductListServlet extends HttpServlet  {
-	private ProductDAO productDAO;
+public class StockListServlet extends HttpServlet {
+	private StockDAO stockDAO;
 	private static final long serialVersionUID = -4429371055509587937L;
 
 	protected void service (HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-		ArrayList<Product> products = new ArrayList<Product>();
+		ArrayList<Stock> stocks = new ArrayList<Stock>();
 		try {
-			productDAO = new ProductDAO();
-			products = productDAO.getAllProducts();
+			stockDAO = new StockDAO();
+			stocks = stockDAO.getAllStock();
 		} catch (SQLException e) {
 			request.setAttribute("error", "Erro no banco de dados!");
 		}
-		request.setAttribute("products", products);
+		request.setAttribute("stocks", stocks);
 		RequestDispatcher rd = 
-        request.getRequestDispatcher("/ProductList.jsp");
+        request.getRequestDispatcher("/StockList.jsp");
     	rd.forward(request,response);
 	}
 }
