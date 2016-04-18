@@ -5,6 +5,7 @@ public class Stock {
 	private int quantity;
 	private String supplier;
 	private float price;
+	private int id;
 	
 	public Stock(int idProduct, int quantity, String supplier, float price) {
 		this.idProduct = idProduct;
@@ -13,6 +14,10 @@ public class Stock {
 		this.price = price;
 	}
 	
+	public Stock() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getIdProduct() {
 		return idProduct;
 	}
@@ -43,5 +48,12 @@ public class Stock {
 	
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

@@ -68,10 +68,17 @@ public class StockRegisterServlet extends HttpServlet  {
 	        }
 	        else{
 	        	request.setAttribute("error", resultValidation);
-	        	request.setAttribute("product_id", productId);
-	        	request.setAttribute("product_price", stockPrice);
-	        	request.setAttribute("product_quantity", stockQuantity);
-	        	request.setAttribute("product_supplier", stockSupplier);
+	        	ArrayList<Product> products = new ArrayList<Product>();
+	        	try {
+					ProductDAO productDAO = new ProductDAO();
+					products = productDAO.getAllProducts();
+				} catch (SQLException e) {
+					request.setAttribute("error", "Erro no banco de dados!");
+				}
+	        	request.setAttribute("products", products);
+	        	request.setAttribute("stock_price", stockPrice);
+	        	request.setAttribute("stock_quantity", stockQuantity);
+	        	request.setAttribute("stock_supplier", stockSupplier);
 	        	RequestDispatcher rd = 
 		        request.getRequestDispatcher("/StockRegister.jsp");
 	        	rd.forward(request,response);

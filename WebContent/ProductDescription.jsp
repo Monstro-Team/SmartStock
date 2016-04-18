@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="model.Stock"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -26,6 +28,34 @@
 						<br>Descrição: ${product_description}
 						<br>Quantidade mínima: ${product_quantity_min}
 						<br>Localização: ${product_location}
+						<br>
+						<table class="table table-striped table-hover ">
+							<thead>
+							    <tr>
+							      <th>#</th>
+							      <th>Quantidade</th>
+							      <th>Fornecedor</th>
+							    </tr>
+							</thead>
+							<tbody>
+									<%
+									ArrayList<Stock> list = (ArrayList<Stock>) request.getAttribute("stocks");
+									if(list != null){
+									
+										for(Stock stock : list) {
+											out.println("<tr>");
+											out.println("<td>"+stock.getId()+"</td>");
+										    out.println("<td>"+stock.getQuantity()+"</td>");
+										    out.println("<td>"+stock.getSupplier()+"</td>");
+										    out.println("</tr>");
+										}
+									}
+									else{
+										out.println("Erro ao construir a lista.");
+									}
+									%>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

@@ -62,7 +62,7 @@ public class ProductEditorServlet extends HttpServlet{
 		        	try {
 						productDAO.updateProduct(product);
 					} catch (SQLException e) {
-						request.setAttribute("error", "Erro no b50anco de dados!");
+						request.setAttribute("error", "Erro no banco de dados!");
 			        	request.setAttribute("product_name", productName);
 			        	request.setAttribute("product_description", productDescription);
 			        	request.setAttribute("product_quantity_min", productQuantityMin);
