@@ -25,10 +25,14 @@ initParams = {
 		@WebInitParam(name = "info", value = "")
 })
 public class ProductEditorServlet extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1339041936997740338L;
+
 	protected void service (HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        Validator validator = new Validator();
         ProductDAO productDAO = null;
         Product product = null;
         String resultValidation = null;

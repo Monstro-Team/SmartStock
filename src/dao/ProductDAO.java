@@ -30,8 +30,7 @@ public class ProductDAO {
 	
 	public void updateProduct(Product product)throws SQLException {
 		String query =  "UPDATE "
-				+ TABLE_NAME + " SET " + COLUMN_NAME+"='"+product.getName()+"', " + COLUMN_DESCRIPTION+"='"+product.getDescription()+"', " + COLUMN_PRICE
-				+ COLUMN_LOCATION +"='"+product.getLocation()+"',"+ COLUMN_QUANTITY_MIN +"="+product.getQuantityMin()+" WHERE "+COLUMN_ID+"="+product.getId()+";";
+				+ TABLE_NAME + " SET " + COLUMN_NAME+"='"+product.getName()+"', " + COLUMN_DESCRIPTION+"='"+product.getDescription()+"', "+ COLUMN_LOCATION +"='"+product.getLocation()+"',"+ COLUMN_QUANTITY_MIN +"="+product.getQuantityMin()+" WHERE "+COLUMN_ID+"="+product.getId()+";";
 
 		System.out.println(query);
 		this.updateQuery(query);

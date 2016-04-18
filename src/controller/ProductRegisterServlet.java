@@ -32,7 +32,6 @@ public class ProductRegisterServlet extends HttpServlet  {
 	protected void service (HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        Validator validator = new Validator();
         
         
         String productName = request.getParameter("product_name");

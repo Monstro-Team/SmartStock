@@ -11,15 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ProductDAO;
 import dao.StockDAO;
-import model.Product;
 import model.Stock;
 
 @WebServlet(urlPatterns = { "/StockDeleterServlet" }, initParams = { @WebInitParam(name = "stock_id", value = ""),
 		@WebInitParam(name = "stock_deleter", value = "") })
 public class StockDeleterServlet extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6515063608857757209L;
 	private int stock_id;
 	private Stock stock;
 	private String stock_deleter;

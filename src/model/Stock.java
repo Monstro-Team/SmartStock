@@ -14,6 +14,14 @@ public class Stock {
 		this.price = price;
 	}
 	
+	public Stock(int idStock, int idProduct, int quantity, String supplier, float price) {
+		this.id = idStock;
+		this.idProduct = idProduct;
+		this.quantity = quantity;
+		this.supplier = supplier;
+		this.price = price;
+	}
+	
 	public Stock() {
 		// TODO Auto-generated constructor stub
 	}

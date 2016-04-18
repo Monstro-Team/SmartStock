@@ -22,6 +22,10 @@ initParams = {
 })
 public class ProductSearchServlet extends HttpServlet  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8400241187685298364L;
 	private ProductDAO productDAO;
 
 	protected void service (HttpServletRequest request,

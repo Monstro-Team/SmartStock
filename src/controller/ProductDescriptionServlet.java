@@ -28,6 +28,10 @@ import model.Stock;
 	})
 public class ProductDescriptionServlet extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6201462147271558343L;
 	private int product_id;
 	private Product product;
 	
