@@ -48,7 +48,7 @@
 											out.println("<td>"+stock.getId()+"</td>");
 										    out.println("<td>"+stock.getQuantity()+"</td>");
 										    out.println("<td>"+stock.getSupplier()+"</td>");
-										    out.println("<td>"+"<a href=\"/SmartStock/StockDeleterServlet?stock_id="+stock.getId()+"\">"+"Deletar"+"</a>"+"</td>");
+										    out.println("<td>"+"<a href=\"/SmartStock/StockDeleterServlet?stock_id="+stock.getId()+"\">"+"Deletar"+"</a>"+"<a href=\"/SmartStock/StockEditorServlet?stock_id="+stock.getId()+"\">"+"Editar"+"</a> "+"</td>");
 										    out.println("</tr>");
 										}
 									}

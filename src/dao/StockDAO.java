@@ -55,9 +55,9 @@ public class StockDAO {
 		return null;
 	}
 	
-	public void updateProduct(Stock stock)throws SQLException {
+	public void updateStock(Stock stock)throws SQLException {
 		String query =  "UPDATE "
-				+ TABLE_NAME + " SET " + COLUMN_PRODUCT_ID+"='"+stock.getIdProduct()+"', " + COLUMN_PRODUCT_ID+"='"+stock.getIdProduct()+"', " + COLUMN_PRICE
+				+ TABLE_NAME + " SET " + COLUMN_PRODUCT_ID+"='"+stock.getIdProduct()+"', " + COLUMN_SUPPLIER +"='"+stock.getSupplier()+"', " + COLUMN_PRICE
 				+"='"+stock.getPrice()+"',"+ COLUMN_QUANTITY +"="+stock.getQuantity()+" WHERE "+COLUMN_ID+"="+stock.getId()+";";
 
 		System.out.println(query);
