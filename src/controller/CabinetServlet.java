@@ -12,34 +12,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Cabinet;
-import model.Product;
 import dao.CabinetDAO;
-import dao.ProductDAO;
+import dao.StockDAO;
+import model.Cabinet;
+import model.Stock;
 
-
-@WebServlet(urlPatterns = {"/ProductListServlet"},
+@WebServlet(urlPatterns = {"/CabinetServlet"},
 initParams = {
-		@WebInitParam(name = "products", value = ""),
+		@WebInitParam(name = "cabinets", value = ""),
 })
-public class ProductListServlet extends HttpServlet  {
-	private ProductDAO productDAO;
-	private static final long serialVersionUID = -4429371055509587937L;
+public class CabinetServlet extends HttpServlet  {
 
 	protected void service (HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-		ArrayList<Product> products = new ArrayList<Product>();
-
+		CabinetDAO cabinetDAO = null;
+		ArrayList<Cabinet> cabinets = new ArrayList<Cabinet>();
 		try {
-			productDAO = new ProductDAO();
-			products = productDAO.getAllProducts();
+			cabinetDAO = new CabinetDAO();
+			cabinets = cabinetDAO.getAllCabinet();
 		} catch (SQLException e) {
 			request.setAttribute("error", "Erro no banco de dados!");
 		}
-		request.setAttribute("products", products);
+		request.setAttribute("cabinets", cabinets);
 		RequestDispatcher rd = 
-        request.getRequestDispatcher("/ProductList.jsp");
+        request.getRequestDispatcher("/ProductRegister.jsp");
     	rd.forward(request,response);
 	}
 }

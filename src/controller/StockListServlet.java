@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CabinetDAO;
 import dao.StockDAO;
+import model.Cabinet;
 import model.Stock;
 
 @WebServlet(urlPatterns = {"/StockListServlet"},
@@ -38,4 +40,5 @@ public class StockListServlet extends HttpServlet {
         request.getRequestDispatcher("/StockList.jsp");
     	rd.forward(request,response);
 	}
+	
 }

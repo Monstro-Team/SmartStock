@@ -1,3 +1,5 @@
+<%@page import="model.Cabinet"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -31,8 +33,27 @@
 							<input class="form-control" id="inputDefault" type="text" value="${product_description}" name="product_description">
 							<br>Quantidade mí­nima:
 							<input class="form-control" id="inputDefault" type="text" value="${product_quantity_min}" name="product_quantity_min">
-							<br>Localização:
-							<input class="form-control" id="inputDefault" type="text" value="${product_location}" name="product_location">
+							<br>Gaveta:
+							<form>
+							<%
+								ArrayList<Cabinet> list = (ArrayList<Cabinet>) request.getAttribute("cabinets");
+								if(list != null){
+									int aux;
+									for(Cabinet cabinet : list) {
+										out.println("<div class=\"btn-group-vertical\">");
+										for(aux=0; aux< cabinet.getQuantityDrawer(); aux++){
+											out.println("<div class=\"btn btn-default\"><input type=\"radio\" name=\"product_location\" value=\""+cabinet.getId()+"\">"+cabinet.getName()+" "+(aux+1)+"<br></div>");							    	
+										}
+										out.println("</div>");
+									}
+								}
+								else{
+									RequestDispatcher rd = 
+									        request.getRequestDispatcher("/CabinetServlet");
+									    	rd.forward(request,response);
+								}
+								%>
+							</form>
 							<br>
 							<button class="btn btn-success" type="submit">Gravar</a>
 						</div>
