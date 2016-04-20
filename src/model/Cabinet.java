@@ -2,7 +2,7 @@ package model;
 
 public class Cabinet {
 	private String name;
-	private int quantityDrawer;
+	private int drawer;
 	private int id;
 	
 	public int getId() {
@@ -13,10 +13,10 @@ public class Cabinet {
 		this.id = id;
 	}
 
-	public Cabinet(String name, int quantityDrawer) {
+	public Cabinet(String name, int drawer) {
 		super();
 		this.name = name;
-		this.quantityDrawer = quantityDrawer;
+		this.drawer = drawer;
 	}
 	
 	public Cabinet() {
@@ -29,11 +29,11 @@ public class Cabinet {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getQuantityDrawer() {
-		return quantityDrawer;
+	public int getDrawer() {
+		return drawer;
 	}
-	public void setQuantityDrawer(int quantityDrawer) {
-		this.quantityDrawer = quantityDrawer;
+	public void setDrawer(int Drawer) {
+		this.drawer = Drawer;
 	}
 	
 }

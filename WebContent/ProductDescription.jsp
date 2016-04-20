@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@page import="model.Stock"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="model.Cabinet"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -27,7 +29,33 @@
 						Nome do produto: ${product_name}
 						<br>Descrição: ${product_description}
 						<br>Quantidade mínima: ${product_quantity_min}
-						<br>Localização: ${product_location}
+						<br>Localização: 
+						<%
+							ArrayList<Cabinet> cabinets = (ArrayList<Cabinet>) request.getAttribute("cabinets");
+							int location = Integer.parseInt((String)request.getAttribute("product_location"));
+							if(cabinets != null){
+								int aux =0;
+								
+								
+								for(Cabinet cabinet : cabinets) {
+									if(aux == 0)
+										out.println("<div class=\"btn-group-vertical\">");	
+									if(cabinet.getId() != location)
+										out.println("<div class=\"btn btn-default\">"+cabinet.getName()+" "+(aux+1)+"</div>");							    	
+									else
+										out.println("<div class=\"btn btn-info\">"+cabinet.getName()+" "+(aux+1)+"</div>");	
+									if(aux++ == 6){
+										out.println("</div>");
+										aux =0;
+									}
+								}
+							}
+							else{
+								RequestDispatcher rd = 
+								request.getRequestDispatcher("/CabinetServlet?description=true");
+								rd.forward(request,response);
+							}
+						%>
 						<br>
 						<table class="table table-striped table-hover ">
 							<thead>

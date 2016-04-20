@@ -38,13 +38,18 @@
 							<%
 								ArrayList<Cabinet> list = (ArrayList<Cabinet>) request.getAttribute("cabinets");
 								if(list != null){
-									int aux;
+									int aux =0;
+									
+									
 									for(Cabinet cabinet : list) {
-										out.println("<div class=\"btn-group-vertical\">");
-										for(aux=0; aux< cabinet.getQuantityDrawer(); aux++){
-											out.println("<div class=\"btn btn-default\"><input type=\"radio\" name=\"product_location\" value=\""+cabinet.getId()+"\">"+cabinet.getName()+" "+(aux+1)+"<br></div>");							    	
+										if(aux == 0)
+											out.println("<div class=\"btn-group-vertical\">");	
+										out.println("<div class=\"btn btn-default\"><input type=\"radio\" name=\"product_location\" value=\""+cabinet.getId()+"\">"+cabinet.getName()+" "+(aux+1)+"<br></div>");							    	
+										
+										if(aux++ == 6){
+											out.println("</div>");
+											aux =0;
 										}
-										out.println("</div>");
 									}
 								}
 								else{

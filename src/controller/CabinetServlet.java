@@ -20,6 +20,7 @@ import model.Stock;
 @WebServlet(urlPatterns = {"/CabinetServlet"},
 initParams = {
 		@WebInitParam(name = "cabinets", value = ""),
+		@WebInitParam(name = "description", value = ""),
 })
 public class CabinetServlet extends HttpServlet  {
 
@@ -27,6 +28,7 @@ public class CabinetServlet extends HttpServlet  {
             HttpServletResponse response)
             throws ServletException, IOException {
 		CabinetDAO cabinetDAO = null;
+		String description =  request.getParameter("description");
 		ArrayList<Cabinet> cabinets = new ArrayList<Cabinet>();
 		try {
 			cabinetDAO = new CabinetDAO();
@@ -35,8 +37,15 @@ public class CabinetServlet extends HttpServlet  {
 			request.setAttribute("error", "Erro no banco de dados!");
 		}
 		request.setAttribute("cabinets", cabinets);
-		RequestDispatcher rd = 
-        request.getRequestDispatcher("/ProductRegister.jsp");
-    	rd.forward(request,response);
+		
+		if(description.equals("true")){
+			RequestDispatcher rd = 
+			        request.getRequestDispatcher("/ProductDescription.jsp");
+			    	rd.forward(request,response);
+		}else{
+			RequestDispatcher rd = 
+	        request.getRequestDispatcher("/ProductRegister.jsp");
+	    	rd.forward(request,response);
+		}
 	}
 }

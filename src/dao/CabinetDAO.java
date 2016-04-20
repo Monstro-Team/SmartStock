@@ -12,13 +12,13 @@ import model.Product;
 
 public class CabinetDAO {
 	/*Script for create table:
-	 * CREATE TABLE cabinet(cabinet_id INTEGER PRIMARY KEY AUTO_INCREMENT, cabinet_name VARCHAR(50) NOT NULL, cabinet_quantity INTEGER );
+	 * CREATE TABLE cabinet(cabinet_id INTEGER PRIMARY KEY AUTO_INCREMENT, cabinet_name VARCHAR(50) NOT NULL, cabinet_drawer INTEGER );
 	 */
 	
 	final String TABLE_NAME = "cabinet";
 	final String COLUMN_ID = "cabinet_id";
 	final String COLUMN_NAME = "cabinet_name";
-	final String COLUMN_QUANTITY = "cabinet_quantity";
+	final String COLUMN_DRAWER = "cabinet_drawer";
 	
 	private Connection connection;
 	
@@ -29,9 +29,9 @@ public class CabinetDAO {
 	public void includeCabinet(Cabinet cabinet) throws SQLException {
 		
 		String query =  "INSERT INTO "
-				+ TABLE_NAME + " (" + COLUMN_NAME+", " + COLUMN_QUANTITY+
+				+ TABLE_NAME + " (" + COLUMN_NAME+", " + COLUMN_DRAWER+
 				") VALUES (" + "\"" + cabinet.getName() + "\", \"" 
-				+ cabinet.getQuantityDrawer() +"\");";
+				+ cabinet.getDrawer() +"\");";
 		
 		System.out.println(query);
 		
@@ -52,7 +52,7 @@ public class CabinetDAO {
 			Cabinet cabinet = new Cabinet();
 			cabinet.setId(result.getInt(COLUMN_ID));
 			cabinet.setName(result.getString(COLUMN_NAME));
-			cabinet.setQuantityDrawer(result.getInt(COLUMN_QUANTITY));
+			cabinet.setDrawer(result.getInt(COLUMN_DRAWER));
 			cabinets.add(cabinet);
 		}
 		
