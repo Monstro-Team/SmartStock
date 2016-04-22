@@ -1,3 +1,5 @@
+<%@page import="model.Cabinet"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -32,7 +34,32 @@
 							<br>Quantidade mí­nima:
 							<input class="form-control" id="inputDefault" type="text" value="${product_quantity_min}" name="product_quantity_min">
 							<br>Localização:
-							<input class="form-control" id="inputDefault" type="text" value="${product_location}" name="product_location">
+								<%
+									ArrayList<Cabinet> list = (ArrayList<Cabinet>) request.getAttribute("cabinets");
+									if(list != null){
+										int aux =0;
+										int location = Integer.parseInt((String)request.getAttribute("product_location"));
+										
+										
+										for(Cabinet cabinet : list) {
+											if(aux == 0)
+												out.println("<div class=\"btn-group-vertical\">");
+											if(cabinet.getId() != location)
+												out.println("<div class=\"btn btn-default\"><input type=\"radio\" name=\"product_location\" value=\""+cabinet.getId()+"\">"+cabinet.getName()+" "+(aux+1)+"<br></div>");									    	
+											else
+												out.println("<div class=\"btn btn-default\"><input type=\"radio\" name=\"product_location\" value=\""+cabinet.getId()+"\" checked=\"checked\">"+cabinet.getName()+" "+(aux+1)+"<br></div>");
+											if(aux++ == 6){
+												out.println("</div>");
+												aux =0;
+											}
+										}
+									}
+									else{
+										RequestDispatcher rd = 
+												request.getRequestDispatcher("/CabinetServlet?editor=true");
+												rd.forward(request,response);
+									}
+									%>
 							<br>
 							<button class="btn btn-success" type="submit">Gravar</a>
 						</div>

@@ -21,6 +21,7 @@ import model.Stock;
 initParams = {
 		@WebInitParam(name = "cabinets", value = ""),
 		@WebInitParam(name = "description", value = ""),
+		@WebInitParam(name = "deleter", value = "")
 })
 public class CabinetServlet extends HttpServlet  {
 
@@ -29,6 +30,8 @@ public class CabinetServlet extends HttpServlet  {
             throws ServletException, IOException {
 		CabinetDAO cabinetDAO = null;
 		String description =  request.getParameter("description");
+		String deleter =  request.getParameter("deleter");
+		String editor =  request.getParameter("editor");
 		ArrayList<Cabinet> cabinets = new ArrayList<Cabinet>();
 		try {
 			cabinetDAO = new CabinetDAO();
@@ -38,14 +41,23 @@ public class CabinetServlet extends HttpServlet  {
 		}
 		request.setAttribute("cabinets", cabinets);
 		
-		if(description.equals("true")){
+		if(description != null && description.equals("true")){
 			RequestDispatcher rd = 
 			        request.getRequestDispatcher("/ProductDescription.jsp");
 			    	rd.forward(request,response);
-		}else{
-			RequestDispatcher rd = 
-	        request.getRequestDispatcher("/ProductRegister.jsp");
-	    	rd.forward(request,response);
 		}
+		if(deleter != null && deleter.equals("true")){
+			RequestDispatcher rd = 
+			        request.getRequestDispatcher("/ProductDeleter.jsp");
+			    	rd.forward(request,response);
+		}
+		if(editor != null && editor.equals("true")){
+			RequestDispatcher rd = 
+			        request.getRequestDispatcher("/ProductEditor.jsp");
+			    	rd.forward(request,response);
+		}
+		RequestDispatcher rd = 
+        request.getRequestDispatcher("/ProductRegister.jsp");
+    	rd.forward(request,response);
 	}
 }
