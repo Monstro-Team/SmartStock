@@ -10,6 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.*;
 
 import dao.UserDAO;
@@ -27,12 +30,15 @@ public class LoginServlet extends HttpServlet {
 	
 	private static final Logger log = Logger.getLogger( LoginServlet.class.getName() );
        
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+    }
+    
+    protected void service (HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+    	System.out.println("dfdfsdvsfsdfsdafsdassfas");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
@@ -40,17 +46,18 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			user = UserDAO.getUser(username, password);
+			
+			if ( user != null ){
+				request.getSession().setAttribute("user", user);
+	            response.sendRedirect(request.getContextPath() + "/index2.html");
+	            return;
+			}else{
+				request.setAttribute("error", "Login inválido: Usuário e/ou senha incorreta.");
+				request.setAttribute("username", username);
+				request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		if ( user != null ){
-			response.sendRedirect("/SmartStock/index2.html");
-		}else{
-			request.setAttribute("error", "Login inválido: Usuário e/ou senha incorreta.");
-			request.setAttribute("username", username);
-			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-			rd.forward(request,response);
 		}
 	}
 }
