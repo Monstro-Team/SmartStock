@@ -1,3 +1,5 @@
+<%@page import="model.Cabinet"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -25,8 +27,37 @@
 							<div class="alert alert-dismissible alert-danger" id="errorInfo">
 							  <strong>Ocorreu um erro!</strong> <a href="#" class="alert-link"></a>${error}
 							</div>
-							Id do produto:
-							<input class="form-control" id="inputDefault" type="text" value="${product_id}" name="product_id">
+								Nome do produto: ${product_name}
+						<br>Descrição: ${product_description}
+						<br>Quantidade mínima: ${product_quantity_min}
+						<br>Localização: 
+						<%
+							ArrayList<Cabinet> cabinets = (ArrayList<Cabinet>) request.getAttribute("cabinets");
+							int location = Integer.parseInt((String)request.getAttribute("product_location"));
+							if(cabinets != null){
+								int aux =0;
+								
+								
+								for(Cabinet cabinet : cabinets) {
+									if(aux == 0)
+										out.println("<div class=\"btn-group-vertical\">");	
+									if(cabinet.getId() != location)
+										out.println("<div class=\"btn btn-default\">"+cabinet.getName()+" "+(aux+1)+"</div>");							    	
+									else
+										out.println("<div class=\"btn btn-info\">"+cabinet.getName()+" "+(aux+1)+"</div>");	
+									if(aux++ == 6){
+										out.println("</div>");
+										aux =0;
+									}
+								}
+							}
+							else{
+								RequestDispatcher rd = 
+								request.getRequestDispatcher("/CabinetServlet?stockEditor=true");
+								rd.forward(request,response);
+							}
+						%>
+					
 							<br>Fornecedor:
 							<input class="form-control" id="inputDefault" type="text" value="${stock_supplier}" name="stock_supplier">
 							<br>Quantidade:

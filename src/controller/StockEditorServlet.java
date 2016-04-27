@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ProductDAO;
 import dao.StockDAO;
+import model.Product;
 import model.Stock;
 import services.Validator;
 
@@ -59,6 +61,24 @@ public class StockEditorServlet extends HttpServlet {
 					stockDAO.updateStock(stock);
 				} catch (SQLException e) {
 					request.setAttribute("error", "Erro no banco de dados!");
+		        	ProductDAO productDAO = null;
+					try {
+						productDAO = new ProductDAO();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		        	Product product = new Product();
+		        	try {
+						productDAO.getProduct(stock.getIdProduct());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		        	request.setAttribute("product_name", product.getName());
+		        	request.setAttribute("product_description", product.getDescription());
+		        	request.setAttribute("product_quantity_min", product.getQuantityMin());
+		        	request.setAttribute("product_location", product.getLocation());
 		        	request.setAttribute("product_id", productId);
 		        	request.setAttribute("stock_id", stockId);
 		        	request.setAttribute("stock_quantity",stockQuantity);
@@ -78,7 +98,13 @@ public class StockEditorServlet extends HttpServlet {
 		else{
 	    	try {
 				Stock stock = stockDAO.getStock(Integer.parseInt(stockId));
-	        	request.setAttribute("product_id", stock.getIdProduct());
+	        	ProductDAO productDAO = new ProductDAO();
+	        	Product product = new Product();
+	        	productDAO.getProduct(stock.getIdProduct());
+	        	request.setAttribute("product_name", product.getName());
+	        	request.setAttribute("product_description", product.getDescription());
+	        	request.setAttribute("product_quantity_min", product.getQuantityMin());
+	        	request.setAttribute("product_location", product.getLocation());
 	        	request.setAttribute("stock_id", stock.getId());
 	        	request.setAttribute("stock_quantity",stock.getQuantity());
 	        	request.setAttribute("stock_supplier", stock.getSupplier());
