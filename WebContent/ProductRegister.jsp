@@ -54,7 +54,7 @@
 								}
 								else{
 									RequestDispatcher rd = 
-									        request.getRequestDispatcher("/CabinetServlet");
+									        request.getRequestDispatcher("/CabinetServlet?productRegister=true");
 									    	rd.forward(request,response);
 								}
 								%>

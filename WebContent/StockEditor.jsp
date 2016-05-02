@@ -65,6 +65,7 @@
 							<br>Preço:
 							<input class="form-control" id="inputDefault" type="text" value="${stock_price}" name="stock_price">
 							<br>
+							<INPUT TYPE="hidden" NAME="product_id" VALUE="${product_id}">
 							<button class="btn btn-success" type="submit">Gravar</a>
 						</div>
 	 	 		</form>

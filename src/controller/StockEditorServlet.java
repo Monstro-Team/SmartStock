@@ -55,7 +55,9 @@ public class StockEditorServlet extends HttpServlet {
 		}
 		if(productId != null){
 			resultValidation = Validator.validadeIsStockCorrect(stockSupplier,stockQuantity, stockPrice);
+			System.out.println("1"+resultValidation);
 			if(resultValidation.length() == 0 ){
+				System.out.println("entrou"+resultValidation);
 				Stock stock = new Stock(Integer.parseInt(stockId),Integer.parseInt(productId),Integer.parseInt(stockQuantity), stockSupplier, Float.parseFloat(stockPrice));
 	        	try {
 					stockDAO.updateStock(stock);
@@ -100,7 +102,8 @@ public class StockEditorServlet extends HttpServlet {
 				Stock stock = stockDAO.getStock(Integer.parseInt(stockId));
 	        	ProductDAO productDAO = new ProductDAO();
 	        	Product product = new Product();
-	        	productDAO.getProduct(stock.getIdProduct());
+	        	product = productDAO.getProduct(stock.getIdProduct());
+	        	request.setAttribute("product_id", product.getId());
 	        	request.setAttribute("product_name", product.getName());
 	        	request.setAttribute("product_description", product.getDescription());
 	        	request.setAttribute("product_quantity_min", product.getQuantityMin());

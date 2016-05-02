@@ -34,6 +34,7 @@ public class CabinetServlet extends HttpServlet  {
 		String editor =  request.getParameter("editor");
 		String stockDeleter =  request.getParameter("stockDeleter");
 		String stockEditor =  request.getParameter("stockEditor");
+		String productRegister =  request.getParameter("productRegister");
 		ArrayList<Cabinet> cabinets = new ArrayList<Cabinet>();
 		try {
 			cabinetDAO = new CabinetDAO();
@@ -68,8 +69,10 @@ public class CabinetServlet extends HttpServlet  {
 			        request.getRequestDispatcher("/StockEditor.jsp");
 			    	rd.forward(request,response);
 		}
-		RequestDispatcher rd = 
-        request.getRequestDispatcher("/ProductRegister.jsp");
-    	rd.forward(request,response);
+		if(productRegister != null && productRegister.equals("true")){
+			RequestDispatcher rd = 
+	        request.getRequestDispatcher("/ProductRegister.jsp");
+	    	rd.forward(request,response);
+		}
 	}
 }
