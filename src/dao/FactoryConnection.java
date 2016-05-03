@@ -10,7 +10,7 @@ public class FactoryConnection {
 	
 	private final String local = "jdbc:mysql://localhost/smart_stock";
 	private final String user = "root";
-	private final String password = "";
+	private final String password = "Mudar123";
 
 	private static FactoryConnection instance;
 

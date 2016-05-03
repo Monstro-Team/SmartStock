@@ -10,6 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Cookie;
+
 import java.util.logging.*;
 
 import dao.UserDAO;
@@ -45,12 +48,19 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		if ( user != null ){
+			HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+            //setting session to expiry in 30 mins
+            session.setMaxInactiveInterval(30*60);
+            Cookie userName = new Cookie("user", user.getUsername());
+            userName.setMaxAge(30*60);
+            response.addCookie(userName);
 			response.sendRedirect("/SmartStock/index2.html");
 		}else{
 			request.setAttribute("error", "Login inválido: Usuário e/ou senha incorreta.");
 			request.setAttribute("username", username);
 			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-			rd.forward(request,response);
+			rd.include(request,response);
 		}
 	}
 }
