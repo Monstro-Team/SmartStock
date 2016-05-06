@@ -7,18 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Cabinet;
-import model.Product;
-
 
 public class CabinetDAO {
-	/*Script for create table:
-	 * CREATE TABLE cabinet(cabinet_id INTEGER PRIMARY KEY AUTO_INCREMENT, cabinet_name VARCHAR(50) NOT NULL, cabinet_drawer INTEGER );
-	 */
-	
-	final String TABLE_NAME = "cabinet";
-	final String COLUMN_ID = "cabinet_id";
-	final String COLUMN_NAME = "cabinet_name";
-	final String COLUMN_DRAWER = "cabinet_drawer";
+
+	private static final String TABLE_NAME = "cabinet";
+	private static final String COLUMN_ID = "cabinet_id";
+	private static final String COLUMN_NAME = "cabinet_name";
+	private static final String COLUMN_DRAWER = "cabinet_drawer";
 	
 	private Connection connection;
 	
@@ -27,16 +22,15 @@ public class CabinetDAO {
 	}
 	
 	public void includeCabinet(Cabinet cabinet) throws SQLException {
-		
-		String query =  "INSERT INTO "
-				+ TABLE_NAME + " (" + COLUMN_NAME+", " + COLUMN_DRAWER+
-				") VALUES (" + "\"" + cabinet.getName() + "\", \"" 
-				+ cabinet.getDrawer() +"\");";
-		
-		System.out.println(query);
-		
-		if ( cabinet != null ) {
-
+		if(cabinet != null) {
+			String query =  "INSERT INTO "
+					+ TABLE_NAME + " ("
+					+ COLUMN_NAME + ", "
+					+ COLUMN_DRAWER
+					+ ") VALUES (" + "\""
+					+ cabinet.getName() + "\", \"" 
+					+ cabinet.getDrawer() +"\");";
+			
 			this.updateQuery(query);
 		}
 	}
@@ -61,16 +55,14 @@ public class CabinetDAO {
 		
 		return cabinets;
 	}
-
 	
-	private void updateQuery( String query ) throws SQLException {
+	private void updateQuery(String query) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement preparedStatement = connection.prepareStatement( query );
+		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		
 		preparedStatement.executeUpdate();
 		
 		preparedStatement.close();
 		connection.close();
-	}
-	
+	}	
 }

@@ -6,50 +6,48 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.Product;
 import model.Stock;
 
 public class StockDAO {
-	/*Script for create table:
-	 * CREATE TABLE stock(stock_id INTEGER PRIMARY KEY AUTO_INCREMENT, product_id INTEGER NOT NULL, stock_price INTEGER, stock_supplier VARCHAR(50), stock_quantity INTEGER );
-	 */
-	final String TABLE_NAME = "stock";
-	final String COLUMN_PRODUCT_ID = "product_id";
-	final String COLUMN_ID = "stock_id";
-	final String COLUMN_PRICE = "stock_price";
-	final String COLUMN_SUPPLIER = "stock_supplier";
-	final String COLUMN_QUANTITY = "stock_quantity";
+
+	private static final String TABLE_NAME = "stock";
+	private static final String COLUMN_PRODUCT_ID = "product_id";
+	private static final String COLUMN_ID = "stock_id";
+	private static final String COLUMN_PRICE = "stock_price";
+	private static final String COLUMN_SUPPLIER = "stock_supplier";
+	private static final String COLUMN_QUANTITY = "stock_quantity";
 	
 	private Connection connection;
 	
-	public StockDAO()  throws SQLException {
+	public StockDAO() throws SQLException {
 		this.connection = FactoryConnection.getInstance().getConnection();
 	}
 	
-	public void includeStock(Stock stock) throws SQLException {
-		
-		String query =  "INSERT INTO "
-				+ TABLE_NAME + " (" + COLUMN_PRODUCT_ID+", " + COLUMN_PRICE+", " 
-				+ COLUMN_SUPPLIER + ", " + COLUMN_QUANTITY + 
-				") VALUES (" + "\"" + stock.getIdProduct() + "\", \"" 
-				+ stock.getPrice() + "\", \"" + stock.getSupplier() + "\", \"" 
-				+ stock.getQuantity() + "\");";
-		
-		System.out.println(query);
-		
-		if ( stock != null ) {
-
+	public void includeStock(Stock stock) throws SQLException {		
+		if(stock != null) {
+			String query =  "INSERT INTO "
+					+ TABLE_NAME + " ("
+					+ COLUMN_PRODUCT_ID + ", "
+					+ COLUMN_PRICE + ", " 
+					+ COLUMN_SUPPLIER + ", "
+					+ COLUMN_QUANTITY + 
+					") VALUES (" + "\""
+					+ stock.getIdProduct() + "\", \"" 
+					+ stock.getPrice() + "\", \""
+					+ stock.getSupplier() + "\", \"" 
+					+ stock.getQuantity() + "\");";
+			
 			this.updateQuery(query);
-		}
-		
+		}		
 	}
 	
 	public Stock getStock(int stockId) throws SQLException {
 		ArrayList<Stock> stocks = getAllStock();
 		
-		for(Stock stock: stocks){
-			if(stock.getId() == stockId)
+		for(Stock stock: stocks) {
+			if(stock.getId() == stockId) { 
 				return stock;
+			}
 		}
 		
 		return null;
@@ -57,13 +55,17 @@ public class StockDAO {
 	
 	public void updateStock(Stock stock)throws SQLException {
 		String query =  "UPDATE "
-				+ TABLE_NAME + " SET " + COLUMN_PRODUCT_ID+"='"+stock.getIdProduct()+"', " + COLUMN_SUPPLIER +"='"+stock.getSupplier()+"', " + COLUMN_PRICE
-				+"='"+stock.getPrice()+"',"+ COLUMN_QUANTITY +"="+stock.getQuantity()+" WHERE "+COLUMN_ID+"="+stock.getId()+";";
-
-		System.out.println(query);
+				+ TABLE_NAME
+				+ " SET "
+				+ COLUMN_PRODUCT_ID + "='" + stock.getIdProduct() + "', "
+				+ COLUMN_SUPPLIER + "='" + stock.getSupplier() + "', "
+				+ COLUMN_PRICE + "='" + stock.getPrice() + "',"
+				+ COLUMN_QUANTITY + "=" + stock.getQuantity()
+				+ " WHERE "
+				+ COLUMN_ID + "=" + stock.getId() + ";";
+		
 		this.updateQuery(query);
-	}
-	
+	}	
 	
 	public ArrayList<Stock> getAllStock() throws SQLException {
 		ArrayList<Stock> stocks = new ArrayList<Stock>();
@@ -90,10 +92,15 @@ public class StockDAO {
 	}
 
 	
-	public ArrayList<Stock> getAllStockByProductId(int productId) throws SQLException {
+	public ArrayList<Stock> getAllStockByProductId(int productId)
+			throws SQLException {
 		ArrayList<Stock> stocks = new ArrayList<Stock>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME + " WHERE "+COLUMN_PRODUCT_ID+" = "+productId+";";
+		String query = "SELECT * FROM "
+				+ TABLE_NAME
+				+ " WHERE "
+				+ COLUMN_PRODUCT_ID + " = " + productId + ";";
+		
 		PreparedStatement preparedStatement = this.connection.prepareStatement(query);
 		ResultSet result = preparedStatement.executeQuery();
 		
@@ -115,21 +122,21 @@ public class StockDAO {
 	}
 	
 	public void deleteStock(int stock_id) throws SQLException{
-		String query = "DELETE FROM "+ TABLE_NAME +" WHERE "+ COLUMN_ID +" = " +stock_id; 
+		String query = "DELETE FROM "
+				+ TABLE_NAME
+				+ " WHERE "
+				+ COLUMN_ID + " = " + stock_id; 
 		
-		System.out.println(query);
 		this.updateQuery(query);
 	}
 	
 	private void updateQuery( String query ) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement preparedStatement = connection.prepareStatement( query );
+		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		
 		preparedStatement.executeUpdate();
 		
 		preparedStatement.close();
 		connection.close();
 	}
-
-
 }
