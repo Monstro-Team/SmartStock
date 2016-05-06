@@ -1,6 +1,7 @@
 package model;
 
 public class Product {
+	
 	private int id;
 	private String name;
 	private String description;
@@ -11,8 +12,8 @@ public class Product {
 		
 	}
 	
-	public Product(String name, String description, String location, int quantityMin) {
-		super();
+	public Product(String name, String description, String location,
+			int quantityMin) {
 		this.name = name;
 		this.description = description;
 		this.location = location;

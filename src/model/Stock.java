@@ -1,11 +1,16 @@
 package model;
 
 public class Stock {
+	
 	private int idProduct;
 	private int quantity;
 	private String supplier;
 	private float price;
 	private int id;
+	
+	public Stock() {
+
+	}
 	
 	public Stock(int idProduct, int quantity, String supplier, float price) {
 		this.idProduct = idProduct;
@@ -14,16 +19,13 @@ public class Stock {
 		this.price = price;
 	}
 	
-	public Stock(int idStock, int idProduct, int quantity, String supplier, float price) {
+	public Stock(int idStock, int idProduct, int quantity, String supplier,
+			float price) {
 		this.id = idStock;
 		this.idProduct = idProduct;
 		this.quantity = quantity;
 		this.supplier = supplier;
 		this.price = price;
-	}
-	
-	public Stock() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getIdProduct() {
@@ -57,6 +59,7 @@ public class Stock {
 	public void setPrice(float price) {
 		this.price = price;
 	}
+	
 	public int getId() {
 		return id;
 	}
