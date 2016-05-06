@@ -12,18 +12,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Product;
 import dao.ProductDAO;
+import model.Product;
 
-@WebServlet(urlPatterns = {"/ProductListServlet"},
+@WebServlet(urlPatterns = {"/StockAlertServlet"},
 initParams = {
 		@WebInitParam(name = "products", value = ""),
 })
-public class ProductListServlet extends HttpServlet  {
+public class StockAlertServlet extends HttpServlet {
 
-	private static final long serialVersionUID = -4429371055509587937L;
+	private static final long serialVersionUID = 6248157882432345603L;
 	private ProductDAO productDAO;
-
+	
 	protected void service (HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,13 +31,13 @@ public class ProductListServlet extends HttpServlet  {
 
 		try {
 			productDAO = new ProductDAO();
-			products = productDAO.getAllProducts();
+			products = productDAO.getAllProductsLowInStock();
 		} catch (SQLException e) {
 			request.setAttribute("error", "Erro no banco de dados!");
 		}
 		request.setAttribute("products", products);
 		RequestDispatcher rd = 
-        request.getRequestDispatcher("/ProductList.jsp");
+        request.getRequestDispatcher("/StockAlert.jsp");
     	rd.forward(request,response);
 	}
 }

@@ -6,10 +6,11 @@ public class Product {
 	private String name;
 	private String description;
 	private String location;
+	private int quantity;
 	private int quantityMin;
 	
 	public Product() {
-		
+
 	}
 	
 	public Product(String name, String description, String location,
@@ -17,6 +18,15 @@ public class Product {
 		this.name = name;
 		this.description = description;
 		this.location = location;
+		this.quantityMin = quantityMin;
+	}	
+	
+	public Product(String name, String description, String location,
+			int quantity, int quantityMin) {
+		this.name = name;
+		this.description = description;
+		this.location = location;
+		this.quantity = quantity;
 		this.quantityMin = quantityMin;
 	}
 	
@@ -52,6 +62,14 @@ public class Product {
 		this.location = location;
 	}
 	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	public int getQuantityMin() {
 		return quantityMin;
 	}

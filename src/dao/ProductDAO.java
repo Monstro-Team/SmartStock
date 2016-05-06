@@ -14,8 +14,8 @@ public class ProductDAO {
 	private static final String COLUMN_ID = "product_id";
 	private static final String COLUMN_NAME = "product_name";
 	private static final String COLUMN_DESCRIPTION = "product_description";
-	private static final String COLUMN_PRICE = "product_price";
-	private static final String COLUMN_SUPPLIER = "product_supplier";
+//	private static final String COLUMN_PRICE = "product_price";
+//	private static final String COLUMN_SUPPLIER = "product_supplier";
 	private static final String COLUMN_LOCATION = "product_location";
 	private static final String COLUMN_QUANTITY_MIN = "product_quantity_min";
 	private static final String COLUMN_QUANTITY = "product_quantity";
@@ -92,6 +92,35 @@ public class ProductDAO {
 			product.setName(result.getString(COLUMN_NAME));
 			product.setDescription(result.getString(COLUMN_DESCRIPTION));
 			product.setLocation(result.getString(COLUMN_LOCATION));
+			product.setQuantityMin(result.getInt(COLUMN_QUANTITY_MIN));
+			
+			products.add(product);
+		}
+		
+		preparedStatement.close();
+		result.close();
+		
+		return products;
+	}
+	
+	public ArrayList<Product> getAllProductsLowInStock() throws SQLException {
+		ArrayList<Product> products = new ArrayList<Product>();
+		
+		String query = "SELECT * FROM "
+				+ TABLE_NAME
+				+ " WHERE "
+				+ COLUMN_QUANTITY + " <= " + COLUMN_QUANTITY_MIN + ";";
+
+		PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+		ResultSet result = preparedStatement.executeQuery();
+		
+		while(result.next()) {
+			Product product = new Product();
+			product.setId(result.getInt(COLUMN_ID));
+			product.setName(result.getString(COLUMN_NAME));
+			product.setDescription(result.getString(COLUMN_DESCRIPTION));
+			product.setLocation(result.getString(COLUMN_LOCATION));
+			product.setQuantity(result.getInt(COLUMN_QUANTITY));
 			product.setQuantityMin(result.getInt(COLUMN_QUANTITY_MIN));
 			
 			products.add(product);
