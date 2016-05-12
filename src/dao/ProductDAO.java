@@ -10,7 +10,7 @@ import model.Product;
 
 public class ProductDAO {
 	
-	private static final String TABLE_NAME = "product";
+	private static final String TABLE_NAME = "Product";
 	private static final String COLUMN_ID = "product_id";
 	private static final String COLUMN_NAME = "product_name";
 	private static final String COLUMN_DESCRIPTION = "product_description";

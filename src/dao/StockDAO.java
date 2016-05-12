@@ -10,7 +10,7 @@ import model.Stock;
 
 public class StockDAO {
 
-	private static final String TABLE_NAME = "stock";
+	private static final String TABLE_NAME = "Stock";
 	private static final String COLUMN_PRODUCT_ID = "product_id";
 	private static final String COLUMN_ID = "stock_id";
 	private static final String COLUMN_PRICE = "stock_price";

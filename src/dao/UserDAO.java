@@ -10,7 +10,7 @@ import model.User;
 
 public class UserDAO {
 	
-	private static final String TABLE_NAME = "user";
+	private static final String TABLE_NAME = "User";
 	private static final String COLUMN_USERNAME = "username";
 	private static final String COLUMN_PASSWORD = "password";
 	

@@ -10,7 +10,7 @@ import model.Cabinet;
 
 public class CabinetDAO {
 
-	private static final String TABLE_NAME = "cabinet";
+	private static final String TABLE_NAME = "Cabinet";
 	private static final String COLUMN_ID = "cabinet_id";
 	private static final String COLUMN_NAME = "cabinet_name";
 	private static final String COLUMN_DRAWER = "cabinet_drawer";
