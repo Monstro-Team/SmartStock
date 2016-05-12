@@ -1,12 +1,22 @@
 package model;
 
 public class Provider {
+	
+	private int id;
 	private String conpany;
 	private String salesman;
 	private String salesmanPhone;
 	
 	public Provider() {
 		
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getConpany() {
