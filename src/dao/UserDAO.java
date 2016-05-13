@@ -11,6 +11,7 @@ import model.User;
 public class UserDAO {
 	
 	private static final String TABLE_NAME = "User";
+	private static final String COLUMN_USER_ID = "user_id";
 	private static final String COLUMN_USERNAME = "username";
 	private static final String COLUMN_PASSWORD = "password";
 	
@@ -39,7 +40,8 @@ public class UserDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 		
 			while(rs.next()) {
-				User user = new User();				
+				User user = new User();		
+				user.setIdUser(rs.getInt(COLUMN_USER_ID));
 				user.setUsername(rs.getString(COLUMN_USERNAME));
 				user.setPassword(rs.getString(COLUMN_PASSWORD));
 				
