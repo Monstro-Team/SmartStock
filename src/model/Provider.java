@@ -3,10 +3,16 @@ package model;
 public class Provider {
 	
 	private int id;
-	private String conpany;
+	private String company;
 	private String salesman;
 	private String salesmanPhone;
 	
+	public Provider(String company, String salesman, String salesmanPhone) {
+		super();
+		this.company = company;
+		this.salesman = salesman;
+		this.salesmanPhone = salesmanPhone;
+	}
 	public Provider() {
 		
 	}
@@ -19,12 +25,12 @@ public class Provider {
 		this.id = id;
 	}
 	
-	public String getConpany() {
-		return conpany;
+	public String getCompany() {
+		return company;
 	}
 
-	public void setConpany(String conpany) {
-		this.conpany = conpany;
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
 	public String getSalesman() {

@@ -22,7 +22,7 @@ public class ProviderDAO {
 		this.connection = FactoryConnection.getInstance().getConnection();
 	}
 	
-	public void includeCabinet(Provider provider) throws SQLException {
+	public void includeProvider(Provider provider) throws SQLException {
 		if(provider != null) {
 			String query =  "INSERT INTO "
 					+ TABLE_NAME + " ("
@@ -30,7 +30,7 @@ public class ProviderDAO {
 					+ COLUMN_SALESMAN + ", "
 					+ COLUMN_SALESMANPHONE 
 					+ ") VALUES (" + "\""
-					+ provider.getConpany() + "\", \"" 
+					+ provider.getCompany() + "\", \"" 
 					+ provider.getSalesman() + "\", \"" 
 					+ provider.getSalesmanPhone() + "\");";
 			
@@ -38,7 +38,7 @@ public class ProviderDAO {
 		}
 	}
 	
-	public ArrayList<Provider> getAllCabinet() throws SQLException {
+	public ArrayList<Provider> getAllProvider() throws SQLException {
 		ArrayList<Provider> providers = new ArrayList<Provider>();
 		
 		String query = "SELECT * FROM " + TABLE_NAME + ";";
@@ -48,7 +48,7 @@ public class ProviderDAO {
 		while(result.next()) {
 			Provider provider = new Provider();
 			provider.setId(result.getInt(COLUMN_ID));
-			provider.setConpany(result.getString(COLUMN_CONPANY));
+			provider.setCompany(result.getString(COLUMN_CONPANY));
 			provider.setSalesman(result.getString(COLUMN_SALESMAN));
 			provider.setSalesmanPhone(result.getString(COLUMN_SALESMANPHONE));
 			providers.add(provider);

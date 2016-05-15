@@ -73,4 +73,19 @@ public class Validator {
 		}
 		return result.toString();
 	}
+	public static String validadeIsProviderCorrect(String company, String salesman, 
+			String salesmanPhone){
+		StringBuffer result = new StringBuffer();
+		
+		if(!validateStringEmpty(company)){
+			result.append("<br>Digite o nome empresa corretamente.");
+		}
+		if(!validateIsNumberIntegerPositiveNotNull(salesmanPhone)){
+			result.append("<br>O telefone do vendedor está incorreto.");
+		}
+		if(!validateStringEmpty(salesman)){
+			result.append("<br>ODigite o nome do vendedor corretamente.");
+		}
+		return result.toString();
+	}
 }
