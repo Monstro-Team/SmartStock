@@ -1,5 +1,5 @@
 CREATE DATABASE smart_stock;
-
+USE smart_stock;
 CREATE TABLE User(
 	user_id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	username VARCHAR(50) NOT NULL,
@@ -56,3 +56,87 @@ INSERT INTO Product(
 	product_quantity,
 	product_quantity_min
 ) VALUES("Chave Canivete", "Carro", "A2", 5, 10);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("a", 1);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("a", 2);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("a", 3);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("a", 4);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("a", 5);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("a", 6);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("a", 7);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("b", 1);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("b", 2);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("b", 3);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("b", 4);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("b", 5);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("b", 6);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("b", 7);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("c", 1);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("c", 2);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("c", 3);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("c", 4);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("c", 5);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("c", 6);
+INSERT INTO Cabinet(
+	cabinet_name,
+	cabinet_drawer
+) VALUES ("c", 7);
