@@ -12,7 +12,7 @@ public class ProviderDAO {
 
 	private static final String TABLE_NAME = "Provider";
 	private static final String COLUMN_ID = "provider_id";
-	private static final String COLUMN_CONPANY = "provider_conpany";
+	private static final String COLUMN_COMPANY = "provider_company";
 	private static final String COLUMN_SALESMAN = "provider_salesman";
 	private static final String COLUMN_SALESMANPHONE = "provider_salesmanPhone";
 	
@@ -26,7 +26,7 @@ public class ProviderDAO {
 		if(provider != null) {
 			String query =  "INSERT INTO "
 					+ TABLE_NAME + " ("
-					+ COLUMN_CONPANY + ", "
+					+ COLUMN_COMPANY + ", "
 					+ COLUMN_SALESMAN + ", "
 					+ COLUMN_SALESMANPHONE 
 					+ ") VALUES (" + "\""
@@ -48,7 +48,7 @@ public class ProviderDAO {
 		while(result.next()) {
 			Provider provider = new Provider();
 			provider.setId(result.getInt(COLUMN_ID));
-			provider.setCompany(result.getString(COLUMN_CONPANY));
+			provider.setCompany(result.getString(COLUMN_COMPANY));
 			provider.setSalesman(result.getString(COLUMN_SALESMAN));
 			provider.setSalesmanPhone(result.getString(COLUMN_SALESMANPHONE));
 			providers.add(provider);

@@ -30,7 +30,7 @@ public class ProviderRegisterServlet extends HttpServlet {
         String salesmanPhone = request.getParameter("salesman_phone");
         
         if(companyName != null){
-	        String resultValidation = Validator.validadeIsProviderCorrect(companyName,salesmanName,salesmanPhone);company
+	        String resultValidation = Validator.validadeIsProviderCorrect(companyName,salesmanName,salesmanPhone);
 	        
 	        if(resultValidation.length() == 0){
 	        	Provider provider = new Provider(companyName,salesmanName,salesmanPhone);

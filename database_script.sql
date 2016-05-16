@@ -31,7 +31,7 @@ CREATE TABLE Product(
 
 CREATE TABLE Provider(
 	provider_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	provider_conpany VARCHAR(50) NOT NULL,
+	provider_company VARCHAR(50) NOT NULL,
 	provider_salesman VARCHAR(50),
 	provider_salesmanPhone VARCHAR(20)
 );
