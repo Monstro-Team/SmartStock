@@ -67,7 +67,7 @@ public class ProviderDeleterServlet  extends HttpServlet {
     	request.setAttribute("provider_salesman", provider.getSalesman());
     	request.setAttribute("provider_salesmanPhone", provider.getSalesmanPhone());
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/PRoviderDeleter.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/ProviderDeleter.jsp");
 		rd.forward(request, response);
 	}
 }

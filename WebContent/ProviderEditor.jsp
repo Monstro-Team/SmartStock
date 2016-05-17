@@ -31,7 +31,7 @@
 							<input class="form-control" id="inputDefault" type="text" value="${provider_company}" name="product_name">
 							<br>Nome do Vendedor:
 							<input class="form-control" id="inputDefault" type="text" value="${provider_salesman}" name="product_description">
-							<br>Nome do Vendedor:
+							<br>Telefone do Vendedor:
 							<input class="form-control" id="inputDefault" type="text" value="${provider_salesmanPhone}" name="product_quantity_min">
 							<br>
 							<button class="btn btn-success" type="submit">Gravar</a>
