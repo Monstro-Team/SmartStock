@@ -31,7 +31,7 @@ public class ProviderListServlet extends HttpServlet  {
 
 		try {
 			providerDAO = new ProviderDAO();
-			providers = providerDAO.getAllProvider();
+			providers = providerDAO.getAllProviders();
 		} catch (SQLException e) {
 			request.setAttribute("error", "Erro no banco de dados!");
 		}
