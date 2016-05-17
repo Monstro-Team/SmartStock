@@ -74,16 +74,25 @@ public class ProviderDAO {
 		this.updateQuery(query);
 	}
 	
-	public Provider getProvider(int productId) throws SQLException {
+	public Provider getProvider(int provider_id) throws SQLException {
 		ArrayList<Provider> providers = getAllProviders();
 		
 		for(Provider provider : providers){
-			if(provider.getId() == productId) {
+			if(provider.getId() == provider_id) {
 				return provider;
 			}
 		}
 		
 		return null;
+	}
+	
+	public void deleteProvider(int provider_id) throws SQLException{
+		String query = "DELETE FROM "
+				+ TABLE_NAME
+				+ " WHERE "
+				+ COLUMN_ID + " = " + provider_id; 
+		
+		this.updateQuery(query);
 	}
 	
 	private void updateQuery(String query) throws SQLException {
