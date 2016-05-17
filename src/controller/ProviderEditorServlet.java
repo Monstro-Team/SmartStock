@@ -32,7 +32,7 @@ public class ProviderEditorServlet extends HttpServlet{
             HttpServletResponse response)
             throws ServletException, IOException {
         ProviderDAO providerDAO = null;
-        Provider product = null;
+        Provider provider = null;
         String resultValidation = null;
         
         String providerId = request.getParameter("product_id");
@@ -51,6 +51,58 @@ public class ProviderEditorServlet extends HttpServlet{
         			request.getRequestDispatcher("/ProviderEditor.jsp");
         	rd.forward(request,response);
 		}
+        
+	    if(providerCompany != null){
+	        		resultValidation = Validator.validadeIsProviderCorrect(providerCompany, providerSalesman,
+	        				providerSalesmanPhone);
+		    if(resultValidation.length() == 0 ){
+		        	provider = new Provider(providerCompany, providerSalesman, providerSalesmanPhone);
+		        	provider.setId(Integer.parseInt(providerId));
+		        	try {
+						providerDAO.updateProvider(provider);
+					} catch (SQLException e) {
+						request.setAttribute("error", "Erro no banco de dados!");
+			        	request.setAttribute("provider_company", providerCompany);
+			        	request.setAttribute("provider_salesman", providerSalesman);
+			        	request.setAttribute("provider_salesmanPhone", providerSalesmanPhone);
+			        	RequestDispatcher rd = 
+				        request.getRequestDispatcher("/ProviderEditor.jsp");
+			        	rd.forward(request,response);
+					}
+		        	request.setAttribute("info", "Edição feita com sucesso!");
+
+		        	RequestDispatcher rd = 
+			        request.getRequestDispatcher("/ProviderList.jsp");
+		        	rd.forward(request,response);
+		    }
+		    else{
+		    	request.setAttribute("provider_id", providerId);
+	        	request.setAttribute("provider_company", providerCompany);
+	        	request.setAttribute("provider_salesman", providerSalesman);
+	        	request.setAttribute("provider_salesmanPhone", providerSalesmanPhone);
+        		request.setAttribute("error", resultValidation);
+            	RequestDispatcher rd = 
+            			request.getRequestDispatcher("/ProviderEditor.jsp");
+                rd.forward(request,response);
+		    }
+	    }
+	    else{
+	    	try {
+				provider = providerDAO.getProvider(Integer.parseInt(providerId));
+			} catch (NumberFormatException | SQLException e) {
+        		request.setAttribute("error", "Ocorreu um erro no banco de dados.");
+            	RequestDispatcher rd = 
+            			request.getRequestDispatcher("/ProductEditor.jsp");
+                rd.forward(request,response);
+			}
+	    	request.setAttribute("provider_id", provider.getId());
+        	request.setAttribute("provider_company", provider.getCompany());
+        	request.setAttribute("provider_salesman", provider.getSalesman());
+        	request.setAttribute("provider_salesmanPhone", provider.getSalesmanPhone());
+        	RequestDispatcher rd = 
+        			request.getRequestDispatcher("/ProviderEditor.jsp");
+        	rd.forward(request,response);
+	    }
 	}
 }
 

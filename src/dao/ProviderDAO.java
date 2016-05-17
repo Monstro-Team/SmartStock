@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Product;
 import model.Provider;
 
 public class ProviderDAO {
@@ -38,7 +39,7 @@ public class ProviderDAO {
 		}
 	}
 	
-	public ArrayList<Provider> getAllProvider() throws SQLException {
+	public ArrayList<Provider> getAllProviders() throws SQLException {
 		ArrayList<Provider> providers = new ArrayList<Provider>();
 		
 		String query = "SELECT * FROM " + TABLE_NAME + ";";
@@ -58,6 +59,31 @@ public class ProviderDAO {
 		result.close();
 		
 		return providers;
+	}
+	
+	public void updateProvider(Provider provider)throws SQLException {
+		String query =  "UPDATE "
+				+ TABLE_NAME
+				+ " SET "
+				+ COLUMN_COMPANY + "='" + provider.getCompany() + "', "
+				+ COLUMN_SALESMAN + "='" + provider.getSalesman() + "', "
+				+ COLUMN_SALESMANPHONE + "='" + provider.getSalesmanPhone()
+				+ " WHERE "
+				+ COLUMN_ID + "=" + provider.getId() + ";";
+		
+		this.updateQuery(query);
+	}
+	
+	public Provider getProvider(int productId) throws SQLException {
+		ArrayList<Provider> providers = getAllProviders();
+		
+		for(Provider provider : providers){
+			if(provider.getId() == productId) {
+				return provider;
+			}
+		}
+		
+		return null;
 	}
 	
 	private void updateQuery(String query) throws SQLException {
