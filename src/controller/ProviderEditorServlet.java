@@ -35,7 +35,7 @@ public class ProviderEditorServlet extends HttpServlet{
         Provider provider = null;
         String resultValidation = null;
         
-        String providerId = request.getParameter("product_id");
+        String providerId = request.getParameter("provider_id");
         String providerCompany = request.getParameter("provider_company");
         String providerSalesman = request.getParameter("provider_salesman");
         String providerSalesmanPhone = request.getParameter("provider_salesmanPhone");
@@ -92,7 +92,7 @@ public class ProviderEditorServlet extends HttpServlet{
 			} catch (NumberFormatException | SQLException e) {
         		request.setAttribute("error", "Ocorreu um erro no banco de dados.");
             	RequestDispatcher rd = 
-            			request.getRequestDispatcher("/ProductEditor.jsp");
+            			request.getRequestDispatcher("/ProviderEditor.jsp");
                 rd.forward(request,response);
 			}
 	    	request.setAttribute("provider_id", provider.getId());

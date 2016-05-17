@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Listagem De Estoque</title>
+		<title>Listagem De Fornecedores</title>
 		<link rel="stylesheet" href="/SmartStock/css/bootstrap.min.css" media="screen">
 		<script src="/SmartStock/js/jquery-2.2.2.min.js"></script>
 		<script src="/SmartStock/js/bootstrap.min.js"></script>
@@ -35,6 +35,7 @@
 						      <th>Empresa</th>
 						      <th>Nome do vendedor</th>
 						      <th>Telefone do vendedor</th>
+						       <th>Ação</th>
 						    </tr>
 						</thead>
 						<tbody>
@@ -48,6 +49,7 @@
 									    out.println("<td>"+provider.getCompany()+"</td>");
 									    out.println("<td>"+provider.getSalesman()+"</td>");
 									    out.println("<td>"+provider.getSalesmanPhone()+"</td>");
+									    out.println("<td> </a><a href=\"/SmartStock/ProviderEditorServlet?provider_id="+provider.getId()+"\">Editar</a>"+"</td>");
 									    out.println("</tr>");
 									}
 								}
