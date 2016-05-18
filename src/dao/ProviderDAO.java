@@ -65,11 +65,11 @@ public class ProviderDAO {
 		String query =  "UPDATE "
 				+ TABLE_NAME
 				+ " SET "
-				+ COLUMN_COMPANY + "='" + provider.getCompany() + "', "
-				+ COLUMN_SALESMAN + "='" + provider.getSalesman() + "', "
-				+ COLUMN_SALESMANPHONE + "='" + provider.getSalesmanPhone()
+				+ COLUMN_COMPANY + "= '" + provider.getCompany() + "', "
+				+ COLUMN_SALESMAN + "= '" + provider.getSalesman() + "', "
+				+ COLUMN_SALESMANPHONE + "= '" + provider.getSalesmanPhone()
 				+ " WHERE "
-				+ COLUMN_ID + "=" + provider.getId() + ";";
+				+ COLUMN_ID + " = " + provider.getId() + ";";
 		
 		this.updateQuery(query);
 	}

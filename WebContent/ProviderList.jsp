@@ -49,7 +49,9 @@
 									    out.println("<td>"+provider.getCompany()+"</td>");
 									    out.println("<td>"+provider.getSalesman()+"</td>");
 									    out.println("<td>"+provider.getSalesmanPhone()+"</td>");
-									    out.println("<td> </a><a href=\"/SmartStock/ProviderEditorServlet?provider_id="+provider.getId()+"\">Editar</a>"+"</td>");
+									    out.println("<td>"+"<a href=\"/SmartStock/ProviderDeleterServlet?provider_id="+provider.getId()+
+									    		"\">Deletar </a><a href=\"/SmartStock/ProviderEditorServlet?provider_id="+provider.getId()+
+									    		"\">Editar</a>"+"</td>");
 									    out.println("</tr>");
 									}
 								}

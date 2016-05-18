@@ -20,7 +20,8 @@ initParams = {
 		@WebInitParam(name = "provider_id", value = ""),
 		@WebInitParam(name = "provider_company", value = ""),
 		@WebInitParam(name = "provider_salesman", value = ""),
-		@WebInitParam(name = "provider_salesmanPhone", value = "")
+		@WebInitParam(name = "provider_salesmanPhone", value = ""),
+		@WebInitParam(name = "info", value = "")
 })
 public class ProviderEditorServlet extends HttpServlet{
 	/**
@@ -72,7 +73,7 @@ public class ProviderEditorServlet extends HttpServlet{
 		        	request.setAttribute("info", "Edição feita com sucesso!");
 
 		        	RequestDispatcher rd = 
-			        request.getRequestDispatcher("/ProviderList.jsp");
+		        			request.getRequestDispatcher("/ProviderList.jsp");
 		        	rd.forward(request,response);
 		    }
 		    else{

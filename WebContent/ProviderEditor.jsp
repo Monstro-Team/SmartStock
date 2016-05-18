@@ -1,5 +1,3 @@
-<%@page import="model.Cabinet"%>
-<%@page import="java.util.ArrayList"%>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -19,7 +17,7 @@
 		<div id="includedContent"></div>
 		<div class="container">
 			<div class="col-lg-6">
-				<form action="/SmartStock/ProviderEditorServlet?product_id=${provider_id}" method="post">
+				<form action="/SmartStock/ProviderEditorServlet?provider_id=${provider_id}" method="post">
 					    <div class="form-group">
 					    	<br>
 							<br>
@@ -28,11 +26,11 @@
 							  <strong>Ocorreu um erro!</strong> <a href="#" class="alert-link"></a>${error}
 							</div>
 							Empresa:
-							<input class="form-control" id="inputDefault" type="text" value="${provider_company}" name="product_name">
+							<input class="form-control" id="inputDefault" type="text" value="${provider_company}" name="provider_company">
 							<br>Nome do Vendedor:
-							<input class="form-control" id="inputDefault" type="text" value="${provider_salesman}" name="product_description">
+							<input class="form-control" id="inputDefault" type="text" value="${provider_salesman}" name="provider_salesman">
 							<br>Telefone do Vendedor:
-							<input class="form-control" id="inputDefault" type="text" value="${provider_salesmanPhone}" name="product_quantity_min">
+							<input class="form-control" id="inputDefault" type="text" value="${provider_salesmanPhone}" name="provider_salesmanPhone">
 							<br>
 							<button class="btn btn-success" type="submit">Gravar</a>
 						</div>

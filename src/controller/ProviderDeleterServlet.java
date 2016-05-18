@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ProductDAO;
 import dao.ProviderDAO;
-import dao.StockDAO;
 import model.Provider;
 
 @WebServlet(urlPatterns = {"/ProviderDeleterServlet"},
@@ -63,6 +61,7 @@ public class ProviderDeleterServlet  extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+    	request.setAttribute("provider_id", provider.getId());
 		request.setAttribute("provider_company", provider.getCompany());
     	request.setAttribute("provider_salesman", provider.getSalesman());
     	request.setAttribute("provider_salesmanPhone", provider.getSalesmanPhone());
