@@ -68,7 +68,7 @@ public class ProviderDAO {
 				+ COLUMN_COMPANY + "= '" + provider.getCompany() + "', "
 				+ COLUMN_SALESMAN + "= '" + provider.getSalesman() + "', "
 				+ COLUMN_SALESMANPHONE + "= '" + provider.getSalesmanPhone()
-				+ " WHERE "
+				+ "' WHERE "
 				+ COLUMN_ID + " = " + provider.getId() + ";";
 		
 		this.updateQuery(query);
