@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ProductDAO;
+import dao.ProviderDAO;
 import dao.StockDAO;
 import model.Product;
+import model.Provider;
 import model.Stock;
 
 @WebServlet( urlPatterns = {"/StockRegisterServlet"},
@@ -69,13 +71,18 @@ public class StockRegisterServlet extends HttpServlet  {
 	        else{
 	        	request.setAttribute("error", resultValidation);
 	        	ArrayList<Product> products = new ArrayList<Product>();
+	        	ArrayList<Provider> providers = new ArrayList<Provider>();
 	        	try {
 					ProductDAO productDAO = new ProductDAO();
 					products = productDAO.getAllProducts();
+					ProviderDAO providerDAO = new ProviderDAO();
+					providers = providerDAO.getAllProviders();
+					
 				} catch (SQLException e) {
 					request.setAttribute("error", "Erro no banco de dados!");
 				}
 	        	request.setAttribute("products", products);
+	        	request.setAttribute("providers", providers);
 	        	request.setAttribute("stock_price", stockPrice);
 	        	request.setAttribute("stock_quantity", stockQuantity);
 	        	request.setAttribute("stock_supplier", stockSupplier);
@@ -86,13 +93,17 @@ public class StockRegisterServlet extends HttpServlet  {
         }
         else{
         	ArrayList<Product> products = new ArrayList<Product>();
+        	ArrayList<Provider> providers = new ArrayList<Provider>();
         	try {
 				ProductDAO productDAO = new ProductDAO();
 				products = productDAO.getAllProducts();
+				ProviderDAO providerDAO = new ProviderDAO();
+				providers = providerDAO.getAllProviders();
 			} catch (SQLException e) {
 				request.setAttribute("error", "Erro no banco de dados!");
 			}
         	request.setAttribute("products", products);
+        	request.setAttribute("providers", providers);
         	RequestDispatcher rd = 
 	        request.getRequestDispatcher("/StockRegister.jsp");
         	rd.forward(request,response);

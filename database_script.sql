@@ -47,7 +47,7 @@ INSERT INTO Product(
 	product_location,
 	product_quantity,
 	product_quantity_min
-) VALUES ("Chave Tetra", "Casa", "A1", 10, 5);
+) VALUES ("Chave Tetra", "Casa", "1", 10, 5);
 
 INSERT INTO Product(
 	product_name,
@@ -55,88 +55,88 @@ INSERT INTO Product(
 	product_location,
 	product_quantity,
 	product_quantity_min
-) VALUES("Chave Canivete", "Carro", "A2", 5, 10);
+) VALUES("Chave Canivete", "Carro", "2", 5, 10);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("a", 1);
+) VALUES ("A", 1);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("a", 2);
+) VALUES ("A", 2);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("a", 3);
+) VALUES ("A", 3);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("a", 4);
+) VALUES ("A", 4);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("a", 5);
+) VALUES ("A", 5);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("a", 6);
+) VALUES ("A", 6);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("a", 7);
+) VALUES ("A", 7);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("b", 1);
+) VALUES ("B", 1);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("b", 2);
+) VALUES ("B", 2);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("b", 3);
+) VALUES ("B", 3);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("b", 4);
+) VALUES ("B", 4);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("b", 5);
+) VALUES ("B", 5);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("b", 6);
+) VALUES ("B", 6);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("b", 7);
+) VALUES ("B", 7);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("c", 1);
+) VALUES ("C", 1);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("c", 2);
+) VALUES ("C", 2);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("c", 3);
+) VALUES ("C", 3);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("c", 4);
+) VALUES ("C", 4);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("c", 5);
+) VALUES ("C", 5);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("c", 6);
+) VALUES ("C", 6);
 INSERT INTO Cabinet(
 	cabinet_name,
 	cabinet_drawer
-) VALUES ("c", 7);
+) VALUES ("C", 7);
