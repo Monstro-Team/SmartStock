@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="model.Stock"%>
+<%@page import="model.Provider"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Cabinet"%>
 
@@ -69,13 +70,19 @@
 							<tbody>
 									<%
 									ArrayList<Stock> list = (ArrayList<Stock>) request.getAttribute("stocks");
+									ArrayList<Provider> listProvider = (ArrayList<Provider>) request.getAttribute("providers");
 									if(list != null){
-									
+										
 										for(Stock stock : list) {
 											out.println("<tr>");
 											out.println("<td>"+stock.getId()+"</td>");
 										    out.println("<td>"+stock.getQuantity()+"</td>");
-										    out.println("<td>"+stock.getSupplier()+"</td>");
+										    for(Provider provider : listProvider) {
+										    	if(Integer.parseInt(stock.getSupplier()) == provider.getId()){
+										    		out.println("<td>"+provider.getCompany()+", "+provider.getSalesman()+"</td>");
+										    		break;
+										    	}
+										    }
 										    out.println("<td>"+"<a href=\"/SmartStock/StockDeleterServlet?stock_id="+stock.getId()+"\">"+"Deletar"+"</a>"+" <a href=\"/SmartStock/StockEditorServlet?stock_id="+stock.getId()+"\">"+"Editar"+"</a> "+"</td>");
 										    out.println("</tr>");
 										}

@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ProductDAO;
+import dao.ProviderDAO;
 import dao.StockDAO;
 import model.Product;
+import model.Provider;
 import model.Stock;
 
 @WebServlet(urlPatterns = {"/ProductDescriptionServlet"},
@@ -41,12 +43,17 @@ public class ProductDescriptionServlet extends HttpServlet {
 		
 		ProductDAO productDAO;
 		StockDAO stockDAO;
+		ProviderDAO providerDAO;
 		ArrayList<Stock> stocks = null;
+		ArrayList<Provider> providers = null;
 		try {
 			productDAO = new ProductDAO();
 			stockDAO = new StockDAO();
 			product = productDAO.getProduct(product_id);
 			stocks = stockDAO.getAllStockByProductId(product_id);
+			providerDAO = new ProviderDAO();
+			providers = providerDAO.getAllProviders();
+			
 		} catch (SQLException e) {
 			request.setAttribute("error", "Erro no banco de dados!");
 		}
@@ -56,6 +63,7 @@ public class ProductDescriptionServlet extends HttpServlet {
     	request.setAttribute("product_quantity_min", product.getQuantityMin());
     	request.setAttribute("product_location", product.getLocation());
     	request.setAttribute("stocks", stocks);
+    	request.setAttribute("providers", providers);
     	RequestDispatcher rd = 
         request.getRequestDispatcher("/ProductDescription.jsp");
     	rd.forward(request,response);
