@@ -1,4 +1,5 @@
 <%@page import="model.Cabinet"%>
+<%@page import="model.Provider"%>
 <%@page import="java.util.ArrayList"%>
 <html>
 	<head>
@@ -57,9 +58,19 @@
 								rd.forward(request,response);
 							}
 						%>
-					
+							<br>
 							<br>Fornecedor:
-							<input class="form-control" id="inputDefault" type="text" value="${stock_supplier}" name="stock_supplier">
+							<select name="stock_supplier">
+								<%
+								ArrayList<Provider> listProvider = (ArrayList<Provider>) request.getAttribute("providers");
+								if( listProvider != null){
+									  
+									for(Provider provider : listProvider) {
+										out.println("<option value="+provider.getId()+">"+provider.getCompany()+", "+provider.getSalesman()+"</option>");
+									}
+								}
+								%>
+							</select>
 							<br>Quantidade:
 							<input class="form-control" id="inputDefault" type="text" value="${stock_quantity}" name="stock_quantity">
 							<br>Preço:

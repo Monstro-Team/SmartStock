@@ -57,7 +57,7 @@
 						%>
 						<br>Preço: ${stock_price}
 						<br>Quantidade do estoque: ${stock_quantity}
-						<br>Fornecedor: ${stock_supplier}
+						<br>Fornecedor: ${provider}
 						<input type="hidden" name="product_deleter" value="true">
 						<button class="btn btn-danger" type="submit">Deletar</a>				
 					</div>

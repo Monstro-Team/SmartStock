@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ProductDAO;
+import dao.ProviderDAO;
 import dao.StockDAO;
 import model.Product;
+import model.Provider;
 import model.Stock;
 import services.Validator;
 
@@ -43,9 +46,13 @@ public class StockEditorServlet extends HttpServlet {
         String stockQuantity = request.getParameter("stock_quantity");
         String stockSupplier = request.getParameter("stock_supplier");
         String resultValidation = null;
+
+    	ArrayList<Provider> providers = new ArrayList<Provider>();
 		
 		try {
 			stockDAO = new StockDAO();
+			ProviderDAO providerDAO = new ProviderDAO();
+			providers = providerDAO.getAllProviders();
 		} catch (SQLException e1) {
 			request.setAttribute("error", "Erro no banco de dados!"+e1);
 
@@ -77,6 +84,7 @@ public class StockEditorServlet extends HttpServlet {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+		        	request.setAttribute("providers", providers);
 		        	request.setAttribute("product_name", product.getName());
 		        	request.setAttribute("product_description", product.getDescription());
 		        	request.setAttribute("product_quantity_min", product.getQuantityMin());
@@ -103,6 +111,7 @@ public class StockEditorServlet extends HttpServlet {
 	        	ProductDAO productDAO = new ProductDAO();
 	        	Product product = new Product();
 	        	product = productDAO.getProduct(stock.getIdProduct());
+	        	request.setAttribute("providers", providers);
 	        	request.setAttribute("product_id", product.getId());
 	        	request.setAttribute("product_name", product.getName());
 	        	request.setAttribute("product_description", product.getDescription());

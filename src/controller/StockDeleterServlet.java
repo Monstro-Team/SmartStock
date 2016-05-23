@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ProductDAO;
+import dao.ProviderDAO;
 import dao.StockDAO;
 import model.Product;
+import model.Provider;
 import model.Stock;
 
 @WebServlet(urlPatterns = { "/StockDeleterServlet" }, initParams = { @WebInitParam(name = "stock_id", value = ""),
@@ -34,6 +36,8 @@ public class StockDeleterServlet extends HttpServlet {
 		stock_deleter = request.getParameter("stock_deleter");
 		StockDAO stockDAO = null;
 		ProductDAO productDAO = null;
+		ProviderDAO providerDAO = null;
+		Provider provider = null;
 		Product product = null;
 		if (stock_deleter != null)
 			if (stock_deleter.length() != 0) {
@@ -58,12 +62,15 @@ public class StockDeleterServlet extends HttpServlet {
 
 		try {
 			stockDAO = new StockDAO();
+			providerDAO = new ProviderDAO();
 			stock = stockDAO.getStock(stock_id);
 			productDAO = new ProductDAO();
 			product = productDAO.getProduct(stock.getIdProduct());
+			provider = providerDAO.getProvider(Integer.parseInt(stock.getSupplier()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		request.setAttribute("provider", provider.getCompany()+", "+provider.getSalesman() );
 		request.setAttribute("product_name", product.getName());
     	request.setAttribute("product_description", product.getDescription());
     	request.setAttribute("product_quantity_min", product.getQuantityMin());
