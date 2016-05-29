@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ProductDAO;
 import dao.ProviderDAO;
 import dao.StockDAO;
+import model.Key;
 import model.Product;
 import model.Provider;
 import model.Stock;
@@ -77,7 +78,7 @@ public class StockEditorServlet extends HttpServlet {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-		        	Product product = new Product();
+		        	Product product = new Key();
 		        	try {
 						productDAO.getProduct(stock.getIdProduct());
 					} catch (SQLException e1) {
@@ -109,7 +110,7 @@ public class StockEditorServlet extends HttpServlet {
 	    	try {
 				Stock stock = stockDAO.getStock(Integer.parseInt(stockId));
 	        	ProductDAO productDAO = new ProductDAO();
-	        	Product product = new Product();
+	        	Product product = new Key();
 	        	product = productDAO.getProduct(stock.getIdProduct());
 	        	request.setAttribute("providers", providers);
 	        	request.setAttribute("product_id", product.getId());

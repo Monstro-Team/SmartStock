@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ProductDAO;
+import model.Key;
 import model.Product;
 import services.Validator;
 
@@ -25,9 +26,7 @@ initParams = {
 		@WebInitParam(name = "info", value = "")
 })
 public class ProductEditorServlet extends HttpServlet{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -1339041936997740338L;
 
 	protected void service (HttpServletRequest request,
@@ -56,30 +55,32 @@ public class ProductEditorServlet extends HttpServlet{
         	rd.forward(request,response);
 		}
         
-	    if(productName != null){
-	        		resultValidation = Validator.validadeIsProductCorrect(productName, productDescription,
+	    if(productName != null) {
+    		resultValidation = Validator.validadeIsProductCorrect(productName, productDescription,
 	        				productLocation, productQuantityMin);
 		    if(resultValidation.length() == 0 ){
-		        	product = new Product(productName, productDescription, productLocation, 
-		        		Integer.valueOf(productQuantityMin).intValue());
-		        	product.setId(Integer.parseInt(productId));
-		        	try {
-						productDAO.updateProduct(product);
-					} catch (SQLException e) {
-						request.setAttribute("error", "Erro no banco de dados!");
-			        	request.setAttribute("product_name", productName);
-			        	request.setAttribute("product_description", productDescription);
-			        	request.setAttribute("product_quantity_min", productQuantityMin);
-			        	request.setAttribute("product_location", productLocation);
-			        	RequestDispatcher rd = 
-				        request.getRequestDispatcher("/ProductEditor.jsp");
-			        	rd.forward(request,response);
-					}
-		        	request.setAttribute("info", "Edição feita com sucesso!");
-
+		    	product = new Key(productName, productDescription, productLocation, 
+		        Integer.valueOf(productQuantityMin).intValue());
+	        	product.setId(Integer.parseInt(productId));
+		        	
+	        	try {
+					productDAO.updateProduct((Key) product);
+				} catch (SQLException e) {
+					request.setAttribute("error", "Erro no banco de dados!");
+		        	request.setAttribute("product_name", productName);
+		        	request.setAttribute("product_description", productDescription);
+		        	request.setAttribute("product_quantity_min", productQuantityMin);
+		        	request.setAttribute("product_location", productLocation);
 		        	RequestDispatcher rd = 
-			        request.getRequestDispatcher("/ProductList.jsp");
+			        request.getRequestDispatcher("/ProductEditor.jsp");
 		        	rd.forward(request,response);
+				}
+	        	
+	        	request.setAttribute("info", "Edição feita com sucesso!");
+
+	        	RequestDispatcher rd = 
+		        request.getRequestDispatcher("/ProductList.jsp");
+	        	rd.forward(request,response);
 		    }
 		    else{
 		    	request.setAttribute("product_id", productId);
@@ -102,6 +103,7 @@ public class ProductEditorServlet extends HttpServlet{
             	        request.getRequestDispatcher("/ProductEditor.jsp");
                     	rd.forward(request,response);
 			}
+	    	
 	    	request.setAttribute("product_id", product.getId());
         	request.setAttribute("product_name", product.getName());
         	request.setAttribute("product_description", product.getDescription());
@@ -113,4 +115,3 @@ public class ProductEditorServlet extends HttpServlet{
 	    }
 	}
 }
-

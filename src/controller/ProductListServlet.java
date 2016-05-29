@@ -35,9 +35,9 @@ public class ProductListServlet extends HttpServlet  {
 		} catch (SQLException e) {
 			request.setAttribute("error", "Erro no banco de dados!");
 		}
+		
 		request.setAttribute("products", products);
-		RequestDispatcher rd = 
-        request.getRequestDispatcher("/ProductList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/ProductList.jsp");
     	rd.forward(request,response);
 	}
 }

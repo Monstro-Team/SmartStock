@@ -3,8 +3,13 @@ package model;
 
 
 public class Part extends Product {
+	
 	private String brand;
 	private String modelCar;
+	
+	public Part() {
+		super();
+	}
 	
 	public Part(String name, String description, String location,
 			int quantityMin, String brand, String modelCar) {
@@ -28,6 +33,4 @@ public class Part extends Product {
 	public void setModelCar(String modelCar) {
 		this.modelCar = modelCar;
 	}
-	
-	
 }

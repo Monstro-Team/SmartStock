@@ -6,11 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Key;
+import model.Part;
 import model.Product;
 
 public class ProductDAO {
 	
-	private static final String TABLE_NAME = "Product";
+	private static final String TABLE_KEY = "keyy";
+	private static final String TABLE_PART = "part";
 	private static final String COLUMN_ID = "product_id";
 	private static final String COLUMN_NAME = "product_name";
 	private static final String COLUMN_DESCRIPTION = "product_description";
@@ -19,6 +22,8 @@ public class ProductDAO {
 	private static final String COLUMN_LOCATION = "product_location";
 	private static final String COLUMN_QUANTITY_MIN = "product_quantity_min";
 	private static final String COLUMN_QUANTITY = "product_quantity";
+	private static final String COLUMN_BRAND = "product_brand";
+	private static final String COLUMN_CAR_MODEL = "product_car_type";
 	
 	private Connection connection;
 	
@@ -26,9 +31,9 @@ public class ProductDAO {
 		this.connection = FactoryConnection.getInstance().getConnection();
 	}
 	
-	public void updateProduct(Product product)throws SQLException {
+	public void updateProduct(Key product) throws SQLException {
 		String query =  "UPDATE "
-				+ TABLE_NAME
+				+ TABLE_KEY
 				+ " SET "
 				+ COLUMN_NAME + "='" + product.getName() + "', "
 				+ COLUMN_DESCRIPTION + "='" + product.getDescription() + "', "
@@ -40,19 +45,35 @@ public class ProductDAO {
 		this.updateQuery(query);
 	}
 	
+	public void updateProduct(Part product) throws SQLException {
+		String query =  "UPDATE "
+				+ TABLE_PART
+				+ " SET "
+				+ COLUMN_NAME + "='" + product.getName() + "', "
+				+ COLUMN_DESCRIPTION + "='" + product.getDescription() + "', "
+				+ COLUMN_LOCATION + "='" + product.getLocation() + "',"
+				+ COLUMN_QUANTITY_MIN + "=" + product.getQuantityMin() + ", "
+				+ COLUMN_BRAND + "='" + product.getBrand() + "', "
+				+ COLUMN_CAR_MODEL + "='" + product.getModelCar() + "' "
+				+ " WHERE "
+				+ COLUMN_ID + "=" + product.getId() + ";";
+		
+		this.updateQuery(query);
+	}
+	
 	public void deleteProduct(int product_id) throws SQLException{
 		String query = "DELETE FROM "
-				+ TABLE_NAME
+				+ TABLE_KEY
 				+ " WHERE "
-				+ COLUMN_ID + " = " +product_id; 
+				+ COLUMN_ID + " = " + product_id; 
 
 		this.updateQuery(query);
 	}
 	
-	public void includeProduct(Product product) throws SQLException {
+	public void includeProduct(Key product) throws SQLException {
 		if(product != null) {
 			String query =  "INSERT INTO "
-					+ TABLE_NAME + " ("
+					+ TABLE_KEY + " ("
 					+ COLUMN_NAME + ", "
 					+ COLUMN_DESCRIPTION + ", " 
 					+ COLUMN_LOCATION + ", "
@@ -60,8 +81,30 @@ public class ProductDAO {
 					+ ") VALUES (" + "\""
 					+ product.getName() + "\", \"" 
 					+ product.getDescription() + "\", \""
+					+ product.getLocation() + "\", " 
+					+ product.getQuantityMin() + ");";
+
+			this.updateQuery(query);
+		}
+	}
+	
+	public void includeProduct(Part product) throws SQLException {
+		if(product != null) {
+			String query =  "INSERT INTO "
+					+ TABLE_PART + " ("
+					+ COLUMN_NAME + ", "
+					+ COLUMN_DESCRIPTION + ", " 
+					+ COLUMN_LOCATION + ", "
+					+ COLUMN_QUANTITY_MIN + ", "
+					+ COLUMN_BRAND + ", "
+					+ COLUMN_CAR_MODEL
+					+ ") VALUES (" + "\""
+					+ product.getName() + "\", \"" 
+					+ product.getDescription() + "\", \""
 					+ product.getLocation() + "\", \"" 
-					+ product.getQuantityMin() + "\");";
+					+ product.getQuantityMin() + "\", \""
+					+ product.getBrand() + "\", \""
+					+ product.getModelCar() + "\");";
 
 			this.updateQuery(query);
 		}
@@ -82,12 +125,12 @@ public class ProductDAO {
 	public ArrayList<Product> getAllProducts() throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME + ";";
+		String query = "SELECT * FROM " + TABLE_KEY + ";";
 		PreparedStatement preparedStatement = this.connection.prepareStatement(query);
 		ResultSet result = preparedStatement.executeQuery();
 		
 		while(result.next()) {
-			Product product = new Product();
+			Product product = new Key();
 			product.setId(result.getInt(COLUMN_ID));
 			product.setName(result.getString(COLUMN_NAME));
 			product.setDescription(result.getString(COLUMN_DESCRIPTION));
@@ -107,7 +150,7 @@ public class ProductDAO {
 		ArrayList<Product> products = new ArrayList<Product>();
 		
 		String query = "SELECT * FROM "
-				+ TABLE_NAME
+				+ TABLE_KEY
 				+ " WHERE "
 				+ COLUMN_QUANTITY + " <= " + COLUMN_QUANTITY_MIN + ";";
 
@@ -115,7 +158,7 @@ public class ProductDAO {
 		ResultSet result = preparedStatement.executeQuery();
 		
 		while(result.next()) {
-			Product product = new Product();
+			Product product = new Key();
 			product.setId(result.getInt(COLUMN_ID));
 			product.setName(result.getString(COLUMN_NAME));
 			product.setDescription(result.getString(COLUMN_DESCRIPTION));
