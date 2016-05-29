@@ -33,6 +33,7 @@ public class ProductListServlet extends HttpServlet  {
 			productDAO = new ProductDAO();
 			products = productDAO.getAllProducts();
 		} catch (SQLException e) {
+			System.out.println("Bug no banco!"+e);
 			request.setAttribute("error", "Erro no banco de dados!");
 		}
 		

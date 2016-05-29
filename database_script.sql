@@ -54,7 +54,7 @@ INSERT INTO User(
 	password
 ) VALUES ("admin", "12345");
 
-INSERT INTO Key(
+INSERT INTO Keyy(
 	product_name,
 	product_description,
 	product_location,
@@ -62,7 +62,7 @@ INSERT INTO Key(
 	product_quantity_min
 ) VALUES ("Chave Tetra", "Casa", "1", 10, 5);
 
-INSERT INTO Key(
+INSERT INTO Keyy(
 	product_name,
 	product_description,
 	product_location,
@@ -78,7 +78,7 @@ INSERT INTO Part(
 	product_quantity_min,
 	product_brand,
 	product_car_type
-) VALUES("Miolo Ignição", "Carro", "2", 5, 10, "VW", "Polo Classic");
+) VALUES("Miolo IgniÃ§Ã£o", "Carro", "2", 5, 10, "VW", "Polo Classic");
 
 INSERT INTO Part(
 	product_name,

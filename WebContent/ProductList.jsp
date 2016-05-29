@@ -26,7 +26,7 @@
 			<div class="col-lg-6">
 				<div class="alert alert-dismissible alert-success" id="information">
  						<button type="button" class="close" data-dismiss="alert">&times;</button>
- 						<strong>Informação:</strong> <a href="#" class="alert-link">${info}</a>
+ 						<strong>Informação:</strong> <a href="#" class="alert-link">${info}${error}</a>
 				</div>
 				<table class="table table-striped table-hover ">
 					<thead>

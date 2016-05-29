@@ -12,8 +12,8 @@ import model.Product;
 
 public class ProductDAO {
 	
-	private static final String TABLE_KEY = "keyy";
-	private static final String TABLE_PART = "part";
+	private static final String TABLE_KEY = "Keyy";
+	private static final String TABLE_PART = "Part";
 	private static final String COLUMN_ID = "product_id";
 	private static final String COLUMN_NAME = "product_name";
 	private static final String COLUMN_DESCRIPTION = "product_description";
@@ -125,8 +125,8 @@ public class ProductDAO {
 	public ArrayList<Product> getAllProducts() throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
 		
-		String query = "SELECT * FROM " + TABLE_KEY + ";";
-		PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+		String queryKey = "SELECT * FROM " + TABLE_KEY + ";";
+		PreparedStatement preparedStatement = this.connection.prepareStatement(queryKey);
 		ResultSet result = preparedStatement.executeQuery();
 		
 		while(result.next()) {
@@ -138,6 +138,25 @@ public class ProductDAO {
 			product.setQuantityMin(result.getInt(COLUMN_QUANTITY_MIN));
 			
 			products.add(product);
+		}
+		
+
+		
+		String queryPart = "SELECT * FROM " + TABLE_PART + ";";
+		preparedStatement = this.connection.prepareStatement(queryPart);
+		result = preparedStatement.executeQuery();
+		
+		while(result.next()) {
+			Part productPart = new Part();
+			productPart.setId(result.getInt(COLUMN_ID));
+			productPart.setName(result.getString(COLUMN_NAME));
+			productPart.setDescription(result.getString(COLUMN_DESCRIPTION));
+			productPart.setLocation(result.getString(COLUMN_LOCATION));
+			productPart.setQuantityMin(result.getInt(COLUMN_QUANTITY_MIN));
+			productPart.setBrand(result.getString(COLUMN_BRAND));
+			productPart.setModelCar(COLUMN_CAR_MODEL);
+			
+			products.add(productPart);
 		}
 		
 		preparedStatement.close();
