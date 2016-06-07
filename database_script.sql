@@ -36,6 +36,13 @@ CREATE TABLE Provider(
 	provider_salesmanPhone VARCHAR(20)
 );
 
+CREATE TABLE Transaction(
+		transaction_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+		quantity_moved INTEGER NOT NULL,
+		stock_id INTEGER,
+		transaction_type INTEGER
+);
+
 INSERT INTO User(
 	username,
 	password
