@@ -58,6 +58,7 @@ public class ProductDescriptionServlet extends HttpServlet {
 			request.setAttribute("error", "Erro no banco de dados!");
 		}
 		
+		request.setAttribute("product_id", product.getId());
     	request.setAttribute("product_name", product.getName());
     	request.setAttribute("product_description", product.getDescription());
     	request.setAttribute("product_quantity_min", product.getQuantityMin());

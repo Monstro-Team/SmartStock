@@ -71,6 +71,7 @@
 									<%
 									ArrayList<Stock> list = (ArrayList<Stock>) request.getAttribute("stocks");
 									ArrayList<Provider> listProvider = (ArrayList<Provider>) request.getAttribute("providers");
+									String productId = Integer.valueOf(request.getParameter("product_id")).toString();
 									if(list != null){
 										
 										for(Stock stock : list) {
@@ -83,7 +84,9 @@
 										    		break;
 										    	}
 										    }
-										    out.println("<td>"+"<a href=\"/SmartStock/StockDeleterServlet?stock_id="+stock.getId()+"\">"+"Deletar"+"</a>"+" <a href=\"/SmartStock/StockEditorServlet?stock_id="+stock.getId()+"\">"+"Editar"+"</a> "+"</td>");
+										    out.println("<td>"+"<a href=\"/SmartStock/StockDeleterServlet?stock_id="+stock.getId()+"\">"+"Deletar"+"</a>"+
+										    " <a href=\"/SmartStock/StockEditorServlet?stock_id="+stock.getId()+"\">"+"Editar"+"</a> "+
+										    " <a href=\"/SmartStock/TransactionRegisterServlet?stock_id="+stock.getId()+"&product_id="+productId+"\">"+"Transferir"+"</a></td>");
 										    out.println("</tr>");
 										}
 									}

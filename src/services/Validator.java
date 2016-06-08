@@ -26,6 +26,18 @@ public class Validator {
 		}
 	}
 	
+	public static boolean validateIsNumberNotNull(String number){
+		int numberInt;
+		try{
+			numberInt = Integer.valueOf(number).intValue();
+		}catch(NumberFormatException ex){
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
 	public static boolean validateIsNumberFloatPositiveNotNull(String number){
 		float numberFloat;
 		try{
@@ -85,6 +97,21 @@ public class Validator {
 		}
 		if(!validateStringEmpty(salesman)){
 			result.append("<br>ODigite o nome do vendedor corretamente.");
+		}
+		return result.toString();
+	}
+	public static String validadeIsTransactionCorrect(String stock_id, String quantityMoved, 
+			String transactionType){
+		StringBuffer result = new StringBuffer();
+		
+		if(!validateIsNumberNotNull(stock_id)){
+			result.append("<br>Selecione o estoque corretamente.");
+		}
+		if(!validateIsNumberIntegerPositiveNotNull(quantityMoved)){
+			result.append("<br>A quantidade transferida tem que ser maior do que zero.");
+		}
+		if(!validateIsNumberNotNull(transactionType)){
+			result.append("<br>Selecione o tipo da tranferencia.");
 		}
 		return result.toString();
 	}

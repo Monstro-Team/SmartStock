@@ -4,14 +4,23 @@ public class Transaction {
 	int quantityMoved;
 	int stockId;
 	int transactionType;
+	String date;
 	
-	public Transaction(int quantityMoved, int stockId, int transactionType) {
-		super();
+	public Transaction(int quantityMoved, int stockId, int transactionType,String date) {
 		this.quantityMoved = quantityMoved;
 		this.stockId = stockId;
 		this.transactionType = transactionType;
+		this.date = date;
 	}
 	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public int getQuantityMoved() {
 		return quantityMoved;
 	}

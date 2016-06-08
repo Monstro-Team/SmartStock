@@ -11,6 +11,7 @@ public class TransactionDAO {
 	private static final String COLUMN_STOCK = "stock_id";
 	private static final String COLUMN_TYPE = "transaction_type";
 	private static final String COLUMN_QUANTITY = "quantity_moved";
+	private static final String COLUMN_DATE = "transaction_date";
 	
 
 	private Connection connection;
@@ -24,15 +25,18 @@ public class TransactionDAO {
 					+ TABLE_NAME + " ("
 					+ COLUMN_STOCK + ", "
 					+ COLUMN_TYPE + ", "
-					+ COLUMN_QUANTITY + 
+					+ COLUMN_QUANTITY + ", " 
+					+ COLUMN_DATE +
 					") VALUES (" + "\""
 					+ transaction.getStockId() + "\", \"" 
 					+ transaction.getTransactionType() + "\", \""
-					+ transaction.getQuantityMoved() + "\");";
+					+ transaction.getQuantityMoved() + "\", \""
+					+ transaction.getDate()  + "\");";
 			
 			this.updateQuery(query);
 		}		
 	}
+	
 	private void updateQuery( String query ) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(query);

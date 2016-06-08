@@ -40,7 +40,8 @@ CREATE TABLE Transaction(
 		transaction_id INTEGER PRIMARY KEY AUTO_INCREMENT,
 		quantity_moved INTEGER NOT NULL,
 		stock_id INTEGER,
-		transaction_type INTEGER
+		transaction_type INTEGER,
+		transaction_date VARCHAR(50)
 );
 
 INSERT INTO User(
