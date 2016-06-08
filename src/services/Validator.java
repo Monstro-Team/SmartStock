@@ -2,7 +2,7 @@ package services;
 
 public class Validator {
 	
-	public static boolean validateStringEmpty(String string){
+	public static boolean validateStringNotEmpty(String string){
 		if(string.isEmpty()){
 			return false;
 		}
@@ -44,17 +44,17 @@ public class Validator {
 	public static String validadeIsProductCorrect(String name, String description, 
 			String location, String quantityMin){
 		StringBuffer result = new StringBuffer();
-		if(!validateStringEmpty(name)){
+		if(!validateStringNotEmpty(name)){
 			result.append("<br>Digite o nome do produto corretamente.");
 		}
-		if(!validateStringEmpty(description)){
-			result.append("<br>Digite a descriÃ§Ã£o corretamente.");
+		if(!validateStringNotEmpty(description)){
+			result.append("<br>Digite a descrição corretamente.");
 		}
-		if(!validateStringEmpty(location)){
-			result.append("<br>Digite a localizaÃ§Ã£o corretamente.");
+		if(!validateStringNotEmpty(location)){
+			result.append("<br>Digite a localização corretamente.");
 		}
 		if(!validateIsNumberIntegerPositiveNotNull(quantityMin)){
-			result.append("<br>A quantidade mÃ­nima tem que ser um nÃºmero e maior que zero.");
+			result.append("<br>A quantidade mínima tem que ser um número e maior que zero.");
 		}
 		return result.toString();
 	}
@@ -62,14 +62,14 @@ public class Validator {
 			String price){
 		StringBuffer result = new StringBuffer();
 		
-		if(!validateStringEmpty(supplier)){
+		if(!validateStringNotEmpty(supplier)){
 			result.append("<br>Digite o fornecedor corretamente.");
 		}
 		if(!validateIsNumberIntegerPositiveNotNull(quantity)){
-			result.append("<br>A quantidade tem que ser um nÃºmero e maior que zero.");
+			result.append("<br>A quantidade tem que ser um número e maior que zero.");
 		}
 		if(!validateIsNumberFloatPositiveNotNull(price)){
-			result.append("<br>O preÃ§o do produto tem que ser um nÃºmero e maior que zero.");
+			result.append("<br>O preço do produto tem que ser um número e maior que zero.");
 		}
 		return result.toString();
 	}
@@ -77,13 +77,13 @@ public class Validator {
 			String salesmanPhone){
 		StringBuffer result = new StringBuffer();
 		
-		if(!validateStringEmpty(company)){
+		if(!validateStringNotEmpty(company)){
 			result.append("<br>Digite o nome empresa corretamente.");
 		}
 		if(!validateIsNumberIntegerPositiveNotNull(salesmanPhone)){
-			result.append("<br>O telefone do vendedor estÃ¡ incorreto.");
+			result.append("<br>O telefone do vendedor está incorreto.");
 		}
-		if(!validateStringEmpty(salesman)){
+		if(!validateStringNotEmpty(salesman)){
 			result.append("<br>ODigite o nome do vendedor corretamente.");
 		}
 		return result.toString();
