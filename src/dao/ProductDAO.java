@@ -10,15 +10,15 @@ import model.Product;
 
 public class ProductDAO {
 	
-	private static final String TABLE_NAME = "Product";
-	private static final String COLUMN_ID = "product_id";
-	private static final String COLUMN_NAME = "product_name";
-	private static final String COLUMN_DESCRIPTION = "product_description";
+	public static final String TABLE_NAME = "Product";
+	public static final String COLUMN_ID = "product_id";
+	public static final String COLUMN_NAME = "product_name";
+	public static final String COLUMN_DESCRIPTION = "product_description";
 //	private static final String COLUMN_PRICE = "product_price";
 //	private static final String COLUMN_SUPPLIER = "product_supplier";
-	private static final String COLUMN_LOCATION = "product_location";
-	private static final String COLUMN_QUANTITY_MIN = "product_quantity_min";
-	private static final String COLUMN_QUANTITY = "product_quantity";
+	public static final String COLUMN_LOCATION = "product_location";
+	public static final String COLUMN_QUANTITY_MIN = "product_quantity_min";
+	public static final String COLUMN_QUANTITY = "product_quantity";
 	
 	private Connection connection;
 	
