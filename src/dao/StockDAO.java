@@ -17,6 +17,7 @@ public class StockDAO {
 	private static final String COLUMN_SUPPLIER = "stock_supplier";
 	private static final String COLUMN_QUANTITY = "stock_quantity";
 	private static final String COLUMN_MODIFIED = "stock_modified";
+
 	
 	private Connection connection;
 	

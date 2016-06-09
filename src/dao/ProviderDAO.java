@@ -6,16 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.Product;
 import model.Provider;
 
 public class ProviderDAO {
 
-	private static final String TABLE_NAME = "Provider";
-	private static final String COLUMN_ID = "provider_id";
-	private static final String COLUMN_COMPANY = "provider_company";
-	private static final String COLUMN_SALESMAN = "provider_salesman";
-	private static final String COLUMN_SALESMANPHONE = "provider_salesmanPhone";
+	public static final String TABLE_NAME = "Provider";
+	public static final String COLUMN_ID = "provider_id";
+	public static final String COLUMN_COMPANY = "provider_company";
+	public static final String COLUMN_SALESMAN = "provider_salesman";
+	public static final String COLUMN_SALESMANPHONE = "provider_salesmanPhone";
 	
 	private Connection connection;
 	
