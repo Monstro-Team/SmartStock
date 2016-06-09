@@ -17,7 +17,8 @@ CREATE TABLE Stock(
 	product_id INTEGER NOT NULL,
 	stock_price INTEGER,
 	stock_supplier VARCHAR(50),
-	stock_quantity INTEGER
+	stock_quantity INTEGER,
+	stock_modified BOOLEAN
 );
 
 CREATE TABLE Product(

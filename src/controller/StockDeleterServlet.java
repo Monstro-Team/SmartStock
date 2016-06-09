@@ -39,17 +39,21 @@ public class StockDeleterServlet extends HttpServlet {
 		ProviderDAO providerDAO = null;
 		Provider provider = null;
 		Product product = null;
+		boolean stockModified = true;
 		if (stock_deleter != null)
 			if (stock_deleter.length() != 0) {
 				if (stock_deleter.equals("true")) {
 					try {
 						stockDAO = new StockDAO();
+						stockModified = stockDAO.getStock(stock_id).isModified();
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					try {
+						if(stockModified != true)
 							stockDAO.deleteStock(stock_id);
+							
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -67,8 +71,12 @@ public class StockDeleterServlet extends HttpServlet {
 			productDAO = new ProductDAO();
 			product = productDAO.getProduct(stock.getIdProduct());
 			provider = providerDAO.getProvider(Integer.parseInt(stock.getSupplier()));
+			stockModified = stock.isModified();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		if(stockModified){
+			request.setAttribute("error", "O estoque já foi movimentado, não pode ser deletado." );
 		}
 		request.setAttribute("provider", provider.getCompany()+", "+provider.getSalesman() );
 		request.setAttribute("product_name", product.getName());

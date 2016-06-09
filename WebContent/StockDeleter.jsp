@@ -25,6 +25,10 @@
 			<div class="col-lg-6">
 				<form action="/SmartStock/StockDeleterServlet?stock_id=${stock_id}&stock_deleter=true" method="post">
 					<div class="form-group">
+							<div class="alert alert-dismissible alert-danger" id="errorInfo">
+							  <strong>Atenção!</strong> <a href="#" class="alert-link"></a>${error}
+							</div>
+					
 						Nome do produto: ${product_name}
 						<br>Descrição: ${product_description}
 						<br>Quantidade mínima: ${product_quantity_min}

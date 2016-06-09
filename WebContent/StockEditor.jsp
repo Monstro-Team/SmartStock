@@ -26,7 +26,7 @@
 							<br>
 							<br>
 							<div class="alert alert-dismissible alert-danger" id="errorInfo">
-							  <strong>Ocorreu um erro!</strong> <a href="#" class="alert-link"></a>${error}
+							  <strong>Atenção!</strong> <a href="#" class="alert-link"></a>${error}
 							</div>
 								Nome do produto: ${product_name}
 						<br>Descrição: ${product_description}

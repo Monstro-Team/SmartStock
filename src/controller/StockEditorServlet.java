@@ -46,13 +46,14 @@ public class StockEditorServlet extends HttpServlet {
         String stockQuantity = request.getParameter("stock_quantity");
         String stockSupplier = request.getParameter("stock_supplier");
         String resultValidation = null;
-
+        boolean stockModfied = true;
     	ArrayList<Provider> providers = new ArrayList<Provider>();
 		
 		try {
 			stockDAO = new StockDAO();
 			ProviderDAO providerDAO = new ProviderDAO();
 			providers = providerDAO.getAllProviders();
+			stockModfied = stockDAO.getStock(Integer.parseInt(stockId)).isModified();
 		} catch (SQLException e1) {
 			request.setAttribute("error", "Erro no banco de dados!"+e1);
 
@@ -61,11 +62,11 @@ public class StockEditorServlet extends HttpServlet {
         	rd.forward(request,response);
 		}
 		if(productId != null){
-			resultValidation = Validator.validadeIsStockCorrect(stockSupplier,stockQuantity, stockPrice);
-			System.out.println("1"+resultValidation);
+			resultValidation = Validator.validadeIsStockCorrect(stockSupplier,stockQuantity, stockPrice,stockModfied);
+			
 			if(resultValidation.length() == 0 ){
 				System.out.println("entrou"+resultValidation);
-				Stock stock = new Stock(Integer.parseInt(stockId),Integer.parseInt(productId),Integer.parseInt(stockQuantity), stockSupplier, Float.parseFloat(stockPrice));
+				Stock stock = new Stock(Integer.parseInt(stockId),Integer.parseInt(productId),Integer.parseInt(stockQuantity), stockSupplier, Float.parseFloat(stockPrice),false);
 	        	try {
 					stockDAO.updateStock(stock);
 				} catch (SQLException e) {
@@ -110,6 +111,9 @@ public class StockEditorServlet extends HttpServlet {
 				Stock stock = stockDAO.getStock(Integer.parseInt(stockId));
 	        	ProductDAO productDAO = new ProductDAO();
 	        	Product product = new Product();
+	    		if(stock.isModified()){
+	    			request.setAttribute("error", "O estoque já foi movimentado, não pode ser editado." );
+	    		}
 	        	product = productDAO.getProduct(stock.getIdProduct());
 	        	request.setAttribute("providers", providers);
 	        	request.setAttribute("product_id", product.getId());

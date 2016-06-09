@@ -71,9 +71,11 @@ public class Validator {
 		return result.toString();
 	}
 	public static String validadeIsStockCorrect(String supplier, String quantity, 
-			String price){
+			String price,boolean stockModified){
 		StringBuffer result = new StringBuffer();
-		
+		if(stockModified){
+			result.append("<br>O estoque já foi transferido(parte ou todo), logo não pode ser editado.");
+		}
 		if(!validateStringEmpty(supplier)){
 			result.append("<br>Digite o fornecedor corretamente.");
 		}
@@ -101,7 +103,7 @@ public class Validator {
 		return result.toString();
 	}
 	public static String validadeIsTransactionCorrect(String stock_id, String quantityMoved, 
-			String transactionType){
+			String transactionType, int stockQuantity){
 		StringBuffer result = new StringBuffer();
 		
 		if(!validateIsNumberNotNull(stock_id)){
@@ -109,6 +111,10 @@ public class Validator {
 		}
 		if(!validateIsNumberIntegerPositiveNotNull(quantityMoved)){
 			result.append("<br>A quantidade transferida tem que ser maior do que zero.");
+		}else{
+			if( stockQuantity < Integer.valueOf(quantityMoved).intValue()){
+				result.append("<br>A quantidade movida não pode ser maior que o a do estoque.");
+			}
 		}
 		if(!validateIsNumberNotNull(transactionType)){
 			result.append("<br>Selecione o tipo da tranferencia.");

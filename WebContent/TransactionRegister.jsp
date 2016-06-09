@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Edição De Estoque</title>
+		<title>Movimentar Mercadoria</title>
 		<link rel="stylesheet" href="/SmartStock/css/bootstrap.min.css" media="screen">
 		<script src="/SmartStock/js/jquery-2.2.2.min.js"></script>
 		<script src="/SmartStock/js/bootstrap.min.js"></script>
@@ -64,7 +64,7 @@
 							}
 						%>
 							<br>
-							<br>Fornecedor: {/$product_supplier}
+							<br>Fornecedor: ${provider}
 							<br>Quantidade:${stock_quantity}
 							<br>Preço:${stock_price}
 							<INPUT TYPE="hidden" NAME="product_id" VALUE="${product_id}">
@@ -72,9 +72,9 @@
 							<INPUT TYPE="hidden" NAME="product_name" VALUE="${product_name}">
 							<br>Quantidade movida:
 							<input class="form-control" id="inputDefault" type="text" value="${quantity_moved}" name="quantity_moved">
-							<input type="radio" name="transaction_type" value="0"> Quadro<br>
-						    <input type="radio" name="transaction_type" value="1"> Venda<br>
-						    <input type="radio" name="transaction_type" value="2"> Transferencia de loja<br>
+							<input type="radio" name="transaction_type" value="1"> Quadro<br>
+						    <input type="radio" name="transaction_type" value="2"> Venda<br>
+						    <input type="radio" name="transaction_type" value="3"> Transferencia de loja<br>
 							<button class="btn btn-success" type="submit">Gravar</a>
 						</div>
 	 	 		</form>

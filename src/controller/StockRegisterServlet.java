@@ -44,10 +44,10 @@ public class StockRegisterServlet extends HttpServlet  {
         String stockQuantity = request.getParameter("stock_quantity");
         
         if(productId != null){
-	        String resultValidation = Validator.validadeIsStockCorrect(stockSupplier,stockQuantity,stockPrice);
+	        String resultValidation = Validator.validadeIsStockCorrect(stockSupplier,stockQuantity,stockPrice,false);
 	        
 	        if(resultValidation.length() == 0){
-	        	Stock stock = new Stock(Integer.parseInt(productId),Integer.parseInt(stockQuantity), stockSupplier,Float.parseFloat(stockPrice));
+	        	Stock stock = new Stock(Integer.parseInt(productId),Integer.parseInt(stockQuantity), stockSupplier,Float.parseFloat(stockPrice),false);
 	        	
 	        	try {
 	        		StockDAO stockDAO = new StockDAO();

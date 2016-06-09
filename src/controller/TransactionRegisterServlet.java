@@ -38,27 +38,44 @@ public class TransactionRegisterServlet extends HttpServlet{
 	protected void service (HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        
+		StockDAO stockDAO = null;
+		Stock stock = null;
         String productId = request.getParameter("product_id");
         String stockId = request.getParameter("stock_id");
         String productName = request.getParameter("product_name");
         String quantityMoved = request.getParameter("quantity_moved");
         String transactionType = request.getParameter("transaction_type");
         String productLocation = request.getParameter("product_location");
+        int stockQuantity = 0;
         
         if(productName != null){
+        	try {
+        		stockDAO = new StockDAO();
+				
+				stock = stockDAO.getStock(Integer.parseInt(stockId));
+
+				stockQuantity = stock.getQuantity();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
 	        String resultValidation = Validator.validadeIsTransactionCorrect(stockId, quantityMoved,
-	        		transactionType);
-	        
+	        		transactionType,stockQuantity);
+
 	        if(resultValidation.length() == 0){
 	        	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	        	Date date = new Date();
-	        	Transaction transaction = new Transaction(Integer.valueOf(stockId).intValue(), Integer.valueOf(quantityMoved).intValue(),
+
+	        	Transaction transaction = new Transaction(Integer.valueOf(quantityMoved).intValue(),Integer.valueOf(stockId).intValue(),
 	        			Integer.valueOf(transactionType).intValue(), dateFormat.format(date));
 	        	
 	        	try {
 	        		TransactionDAO transactionDAO = new TransactionDAO();
 					transactionDAO.includeTransaction(transaction);
+					stock.setQuantity(stockQuantity-transaction.getQuantityMoved());
+					stock.setModified(true);
+					stockDAO.updateStock(stock);
 					
 				} catch (SQLException e) {
 		        	request.setAttribute("error", "Erro no banco de dados!" +e);
@@ -92,11 +109,11 @@ public class TransactionRegisterServlet extends HttpServlet{
         else{
         	try {
 				ProductDAO productDAO = new ProductDAO();
-				StockDAO stockDAO = new StockDAO();
+				stockDAO = new StockDAO();
 				ProviderDAO providerDAO = new ProviderDAO();
 				
 				Product product = productDAO.getProduct(Integer.parseInt(productId));
-				Stock stock = stockDAO.getStock(Integer.parseInt(stockId));
+				stock = stockDAO.getStock(Integer.parseInt(stockId));
 				model.Provider provider = providerDAO.getProvider(Integer.parseInt(stock.getSupplier()));
 				request.setAttribute("provider", provider.getCompany()+", "+provider.getSalesman() );
 				request.setAttribute("product_name", product.getName());
