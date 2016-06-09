@@ -5,7 +5,7 @@ public class Transaction {
 	int stockId;
 	int transactionType;
 	String date;
-	
+	public Transaction(){}
 	public Transaction(int quantityMoved, int stockId, int transactionType,String date) {
 		this.quantityMoved = quantityMoved;
 		this.stockId = stockId;

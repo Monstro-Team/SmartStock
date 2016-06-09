@@ -2,8 +2,11 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import model.Product;
 import model.Transaction;
 
 public class TransactionDAO {
@@ -18,6 +21,28 @@ public class TransactionDAO {
 	
 	public TransactionDAO() throws SQLException {
 		this.connection = FactoryConnection.getInstance().getConnection();
+	}
+	public ArrayList<Transaction> getAllTransaction() throws SQLException {
+		ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+		
+		String query = "SELECT * FROM " + TABLE_NAME + ";";
+		PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+		ResultSet result = preparedStatement.executeQuery();
+		
+		while(result.next()) {
+			Transaction transaction  = new Transaction();
+			transaction.setStockId(result.getInt(COLUMN_STOCK));
+			transaction.setTransactionType(result.getInt(COLUMN_TYPE));
+			transaction.setDate(result.getString(COLUMN_DATE));
+			transaction.setQuantityMoved(result.getInt(COLUMN_QUANTITY));
+			
+			transactions.add(transaction);
+		}
+		
+		preparedStatement.close();
+		result.close();
+		
+		return transactions;
 	}
 	public void includeTransaction(Transaction transaction) throws SQLException {		
 		if(transaction != null) {
