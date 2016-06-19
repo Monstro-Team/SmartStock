@@ -13,9 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dao.FactoryConnection;
-import dao.ProviderDAO;
 import dao.StockDAO;
-import model.Provider;
 import model.Stock;
 
 public class StockDAOTest {
@@ -40,7 +38,7 @@ public class StockDAOTest {
 
 	@Test
 	public void testIncludeStock() throws SQLException {
-		Stock stock = new Stock(1, 10, "test", 5);
+		Stock stock = new Stock(1, 10, "test", 5, false);
 		stockDAO.includeStock(stock);
 		
 		String query = "SELECT * FROM " + StockDAO.TABLE_NAME + " WHERE " + StockDAO.COLUMN_PRICE + " = 5;";
@@ -68,7 +66,7 @@ public class StockDAOTest {
 
 	@Test
 	public void testGetStock() throws SQLException {
-		Stock stock = new Stock(1, 10, "test", 3);
+		Stock stock = new Stock(1, 10, "test", 3, false);
 		stockDAO.includeStock(stock);
 		
 		String query = "SELECT * FROM " + StockDAO.TABLE_NAME + " LIMIT 1;";
@@ -93,10 +91,9 @@ public class StockDAOTest {
 		assertNull(stockDAO.getStock(-1));
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testUpdateStock() throws SQLException {
-		Stock stockToUpdate = new Stock(1, 10, "test", 7);
+		Stock stockToUpdate = new Stock(1, 10, "test", 7, true);
 		stockDAO.includeStock(stockToUpdate);
 		
 		String query = "SELECT * FROM " + StockDAO.TABLE_NAME + " WHERE " + StockDAO.COLUMN_PRICE + " = 7;";
@@ -139,9 +136,9 @@ public class StockDAOTest {
 
 	@Test
 	public void testGetAllStock() throws SQLException {
-		Stock stock = new Stock(1, 10, "test", 30);
+		Stock stock = new Stock(1, 10, "test", 30, false);
 		stockDAO.includeStock(stock);
-		Stock stock2 = new Stock(1, 10, "test", 40);
+		Stock stock2 = new Stock(1, 10, "test", 40, false);
 		stockDAO.includeStock(stock2);
 		
 		ArrayList<Stock> stocks = stockDAO.getAllStock();
@@ -151,7 +148,7 @@ public class StockDAOTest {
 
 	@Test
 	public void testGetAllStockByProductId() throws SQLException {
-		Stock stock = new Stock(1, 10, "test", 70);
+		Stock stock = new Stock(1, 10, "test", 70, false);
 		stockDAO.includeStock(stock);
 		
 		String query = "SELECT * FROM " + StockDAO.TABLE_NAME + " WHERE " + StockDAO.COLUMN_PRICE + " = 70;";
@@ -180,7 +177,7 @@ public class StockDAOTest {
 
 	@Test
 	public void testDeleteStock() throws SQLException {
-		Stock stock = new Stock(1, 10, "test", 50);
+		Stock stock = new Stock(1, 10, "test", 50, false);
 		stockDAO.includeStock(stock);
 		
 		ArrayList<Stock> stocks = stockDAO.getAllStock();

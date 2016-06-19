@@ -90,25 +90,25 @@ public class ValidatorTest {
 
 	@Test
 	public void testValidadeIsStockCorrect() {
-		String result = Validator.validadeIsStockCorrect("Supplier", "5", "7.0");
+		String result = Validator.validadeIsStockCorrect("Supplier", "5", "7.0", false);
 		assertTrue(result.isEmpty());
 	}
 
 	@Test
 	public void testValidadeIsStockCorrectInvalidSupplier() {
-		String result = Validator.validadeIsStockCorrect("", "5", "7.0");
+		String result = Validator.validadeIsStockCorrect("", "5", "7.0", false);
 		assertTrue(result.equals("<br>Digite o fornecedor corretamente."));
 	}
 
 	@Test
 	public void testValidadeIsStockCorrectInvalidQuantity() {
-		String result = Validator.validadeIsStockCorrect("Supplier", "0", "7.0");
+		String result = Validator.validadeIsStockCorrect("Supplier", "0", "7.0", false);
 		assertTrue(result.equals("<br>A quantidade tem que ser um número e maior que zero."));
 	}
 
 	@Test
 	public void testValidadeIsStockCorrectInvalidPrice() {
-		String result = Validator.validadeIsStockCorrect("Supplier", "5", "0");
+		String result = Validator.validadeIsStockCorrect("Supplier", "5", "0", false);
 		assertTrue(result.equals("<br>O preço do produto tem que ser um número e maior que zero."));
 	}
 
