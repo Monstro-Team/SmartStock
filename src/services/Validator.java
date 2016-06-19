@@ -27,9 +27,8 @@ public class Validator {
 	}
 	
 	public static boolean validateIsNumberNotNull(String number){
-		int numberInt;
 		try{
-			numberInt = Integer.valueOf(number).intValue();
+			int numberInt = Integer.valueOf(number).intValue();
 		}catch(NumberFormatException ex){
 			return false;
 		}
@@ -60,13 +59,13 @@ public class Validator {
 			result.append("<br>Digite o nome do produto corretamente.");
 		}
 		if(!validateStringNotEmpty(description)){
-			result.append("<br>Digite a descriï¿½ï¿½o corretamente.");
+			result.append("<br>Digite a descrição corretamente.");
 		}
 		if(!validateStringNotEmpty(location)){
-			result.append("<br>Digite a localizaï¿½ï¿½o corretamente.");
+			result.append("<br>Digite a localização corretamente.");
 		}
 		if(!validateIsNumberIntegerPositiveNotNull(quantityMin)){
-			result.append("<br>A quantidade mï¿½nima tem que ser um nï¿½mero e maior que zero.");
+			result.append("<br>A quantidade mínima tem que ser um número e maior que zero.");
 		}
 		return result.toString();
 	}
@@ -74,17 +73,17 @@ public class Validator {
 			String price,boolean stockModified){
 		StringBuffer result = new StringBuffer();
 		if(stockModified){
-			result.append("<br>O estoque jÃ¡ foi transferido(parte ou todo), logo nÃ£o pode ser editado.");
+			result.append("<br>O estoque já foi transferido(parte ou todo), logo não pode ser editado.");
 		}
 		
 		if(!validateStringNotEmpty(supplier)){
 			result.append("<br>Digite o fornecedor corretamente.");
 		}
 		if(!validateIsNumberIntegerPositiveNotNull(quantity)){
-			result.append("<br>A quantidade tem que ser um nï¿½mero e maior que zero.");
+			result.append("<br>A quantidade tem que ser um número e maior que zero.");
 		}
 		if(!validateIsNumberFloatPositiveNotNull(price)){
-			result.append("<br>O preï¿½o do produto tem que ser um nï¿½mero e maior que zero.");
+			result.append("<br>O preço do produto tem que ser um número e maior que zero.");
 		}
 		return result.toString();
 	}
@@ -96,7 +95,7 @@ public class Validator {
 			result.append("<br>Digite o nome empresa corretamente.");
 		}
 		if(!validateIsNumberIntegerPositiveNotNull(salesmanPhone)){
-			result.append("<br>O telefone do vendedor estï¿½ incorreto.");
+			result.append("<br>O telefone do vendedor está incorreto.");
 		}
 		if(!validateStringNotEmpty(salesman)){
 			result.append("<br>ODigite o nome do vendedor corretamente.");
@@ -114,7 +113,7 @@ public class Validator {
 			result.append("<br>A quantidade transferida tem que ser maior do que zero.");
 		}else{
 			if( stockQuantity < Integer.valueOf(quantityMoved).intValue()){
-				result.append("<br>A quantidade movida nÃ£o pode ser maior que o a do estoque.");
+				result.append("<br>A quantidade movida não pode ser maior que o a do estoque.");
 			}
 		}
 		if(!validateIsNumberNotNull(transactionType)){

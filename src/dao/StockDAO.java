@@ -10,15 +10,14 @@ import model.Stock;
 
 public class StockDAO {
 
-	private static final String TABLE_NAME = "Stock";
-	private static final String COLUMN_PRODUCT_ID = "product_id";
-	private static final String COLUMN_ID = "stock_id";
-	private static final String COLUMN_PRICE = "stock_price";
-	private static final String COLUMN_SUPPLIER = "stock_supplier";
-	private static final String COLUMN_QUANTITY = "stock_quantity";
-	private static final String COLUMN_MODIFIED = "stock_modified";
+	public static final String TABLE_NAME = "Stock";
+	public static final String COLUMN_PRODUCT_ID = "product_id";
+	public static final String COLUMN_ID = "stock_id";
+	public static final String COLUMN_PRICE = "stock_price";
+	public static final String COLUMN_SUPPLIER = "stock_supplier";
+	public static final String COLUMN_QUANTITY = "stock_quantity";
+	public static final String COLUMN_MODIFIED = "stock_modified";
 
-	
 	private Connection connection;
 	
 	public StockDAO() throws SQLException {
@@ -28,6 +27,7 @@ public class StockDAO {
 	public void includeStock(Stock stock) throws SQLException {		
 		if(stock != null) {
 			int modified = 0;
+
 			if(stock.isModified()){
 				modified = 1;
 			}
@@ -64,9 +64,11 @@ public class StockDAO {
 	
 	public void updateStock(Stock stock)throws SQLException {
 		int modified = 0;
+
 		if(stock.isModified()){
 			modified = 1;
 		}
+
 		String query =  "UPDATE "
 				+ TABLE_NAME
 				+ " SET "

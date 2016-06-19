@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.net.ssl.internal.ssl.Provider;
-
 import dao.ProductDAO;
 import dao.ProviderDAO;
 import dao.StockDAO;
@@ -24,6 +22,7 @@ import model.Product;
 import model.Stock;
 import model.Transaction;
 import services.Validator;
+
 @WebServlet( urlPatterns = {"/TransactionRegisterServlet"},
 initParams = {
 		@WebInitParam(name = "list_product", value = ""),
@@ -35,6 +34,9 @@ initParams = {
 })
 
 public class TransactionRegisterServlet extends HttpServlet{
+
+	private static final long serialVersionUID = -6933661885239384226L;
+
 	protected void service (HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {

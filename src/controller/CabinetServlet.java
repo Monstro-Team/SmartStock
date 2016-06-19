@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CabinetDAO;
-import dao.StockDAO;
 import model.Cabinet;
-import model.Stock;
 
 @WebServlet(urlPatterns = {"/CabinetServlet"},
 initParams = {
@@ -24,6 +22,8 @@ initParams = {
 		@WebInitParam(name = "deleter", value = "")
 })
 public class CabinetServlet extends HttpServlet  {
+
+	private static final long serialVersionUID = -5621262166838860972L;
 
 	protected void service (HttpServletRequest request,
             HttpServletResponse response)

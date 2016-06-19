@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ProviderDAO;
 import model.Provider;
 import services.Validator;
+
 @WebServlet( urlPatterns = {"/ProviderRegisterServlet"},
 initParams = {
 		@WebInitParam(name = "company_name", value = ""),
@@ -21,6 +22,9 @@ initParams = {
 		@WebInitParam(name = "salesman_phone", value = "")
 })
 public class ProviderRegisterServlet extends HttpServlet {
+
+	private static final long serialVersionUID = -1786505200104049519L;
+
 	protected void service (HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {    
